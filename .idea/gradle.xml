@@ -5,13 +5,13 @@
       <GradleProjectSettings>
         <option name="testRunner" value="GRADLE" />
         <option name="distributionType" value="DEFAULT_WRAPPED" />
-        <option name="externalProjectPath" value="/mnt/driveD/mohammad/Projects/CE/MP/dongchi" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
         <option name="gradleHome" value="/usr/share/java/gradle" />
         <option name="gradleJvm" value="jbr-17" />
         <option name="modules">
           <set>
-            <option value="/mnt/driveD/mohammad/Projects/CE/MP/dongchi" />
-            <option value="/mnt/driveD/mohammad/Projects/CE/MP/dongchi/app" />
+            <option value="$PROJECT_DIR$" />
+            <option value="$PROJECT_DIR$/app" />
           </set>
         </option>
       </GradleProjectSettings>
