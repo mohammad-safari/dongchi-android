@@ -1,4 +1,4 @@
-package ce.bhesab.dongchi.view1_amir.model
+package ce.bhesab.dongchi.model.viewGroup
 
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
