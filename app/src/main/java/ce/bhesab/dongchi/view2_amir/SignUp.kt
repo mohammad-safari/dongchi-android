@@ -1,22 +1,22 @@
 package ce.bhesab.dongchi.view2_amir
+import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.MailOutline
 import androidx.compose.material3.*
-import androidx.compose.material3.icons.Icons
-import androidx.compose.material3.icons.filled.MailOutline
-import androidx.compose.material3.icons.filled.Visibility
-import androidx.compose.material3.icons.filled.VisibilityOff
-import androidx.compose.material3.textfield.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.platform.LocalSoftwareKeyboardControllerProvider
-import androidx.compose.ui.platform.LocalSoftwareKeyboardControllerProviderKt
-import androidx.compose.ui.platform.LocalSoftwareKeyboardControllerProviderKt.LocalSoftwareKeyboardControllerProvider
 import androidx.compose.ui.text.input.ImeAction
+import androidx.compose.ui.text.input.PasswordVisualTransformation
+import androidx.compose.ui.text.input.VisualTransformation
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 
 class SignUp {
+    @OptIn(ExperimentalMaterial3Api::class)
     @Composable
     fun SignUpScreen() {
         var email by remember { mutableStateOf("") }
@@ -32,7 +32,7 @@ class SignUp {
 
             Text(
                 text = "Sign Up",
-                style = MaterialTheme.typography.h4
+                style = MaterialTheme.typography.bodyMedium
             )
 
             Spacer(modifier = Modifier.height(16.dp))
@@ -61,11 +61,9 @@ class SignUp {
                     imeAction = ImeAction.Done
                 ),
                 trailingIcon = {
-                    val icon = if (isPasswordVisible) Icons.Default.Visibility else Icons.Default.VisibilityOff
                     IconButton(
                         onClick = { isPasswordVisible = !isPasswordVisible }
-                    ) {
-                        Icon(icon, contentDescription = null)
+                    ) { // code //
                     }
                 }
             )
@@ -96,28 +94,12 @@ class SignUp {
             }
         }
     }
-
+    @Preview
     @Composable
-    fun SignUpPage() {
-        val context = LocalContext.current
-        val keyboardController = LocalSoftwareKeyboardControllerProviderKt.LocalSoftwareKeyboardControllerProvider().invoke(context)
-
-        // Set up the content of your signup page here
-        // For example, you can use the SignUpScreen composable function
-
-        // Use LocalSoftwareKeyboardController to show or hide the keyboard when needed
-        // keyboardController?.hide() or keyboardController?.show()
+    fun Amo (){
+        SignUpScreen()
     }
 
-    @Composable
-    fun SplitwiseSignUpPage() {
-        Surface(
-            modifier = Modifier
-                .fillMaxSize()
-                .background(MaterialTheme.colorScheme.background)
-        ) {
-            SignUpPage()
-        }
-    }
+
 
 }
