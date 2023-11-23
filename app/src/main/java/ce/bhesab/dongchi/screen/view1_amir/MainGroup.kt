@@ -1,6 +1,7 @@
-package ce.bhesab.dongchi.view1_amir
+package ce.bhesab.dongchi.screen.view1_amir
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
@@ -20,6 +21,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import ce.bhesab.dongchi.component.PlusButtonInsert
 import ce.bhesab.dongchi.model.viewGroup.Group
 
 class MainGroup {
@@ -31,13 +33,25 @@ class MainGroup {
 
     @Composable
     fun GroupList(groups: List<Group>, modifier: Modifier = Modifier) {
-        LazyColumn(modifier = modifier) {
-            items(groups) { group ->
-                GroupLine(
-                    group = group,
-                    modifier = modifier.padding(8.dp)
-                )
+        Box(
+            modifier = modifier
+                .fillMaxSize()
+                .padding(16.dp)
+        ) {
+            LazyColumn(modifier = modifier) {
+                items(groups) { group ->
+                    GroupLine(
+                        group = group,
+                        modifier = modifier.padding(8.dp)
+                    )
+                }
             }
+
+            PlusButtonInsert (modifier = modifier.align(Alignment.BottomEnd)){
+                //onClick code
+            }
+
+
         }
     }
 
