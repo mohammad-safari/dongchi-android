@@ -1,4 +1,4 @@
-package ce.bhesab.dongchi.composable
+package ce.bhesab.dongchi.components
 
 import androidx.compose.runtime.Composable
 
