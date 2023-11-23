@@ -21,28 +21,30 @@ fun BalanceCard(balance: Balance){
 //        extend = !extend
 //    }
     Card {
-        Column (modifier = Modifier
-            .padding(15.dp)
-            .fillMaxWidth()) {
-            Row (modifier = Modifier
-                .padding(10.dp)
-                .fillMaxWidth(),
-                horizontalArrangement = Arrangement.SpaceBetween) {
-                Text(text = balance.user)
-                Button(onClick = {extend = !extend}) {
-                    if (extend) Text(text = "up")
-                    else Text(text = "down")
+        Row {
+            Column (modifier = Modifier
+                .padding(15.dp)
+                .fillMaxWidth()) {
+                Row (modifier = Modifier
+                    .padding(10.dp)
+                    .fillMaxWidth(),
+                    horizontalArrangement = Arrangement.SpaceBetween) {
+                    Text(text = balance.user)
+                    Button(onClick = {extend = !extend}) {
+                        if (extend) Text(text = "up")
+                        else Text(text = "down")
+                    }
                 }
-            }
 //            Spacer()
-            if (extend){
-                for (entry in balance.values.entries){
-                    Row(modifier = Modifier
-                        .padding(10.dp)
-                        .fillMaxWidth(),
-                        horizontalArrangement = Arrangement.SpaceBetween) {
-                        Text(text = entry.key)
-                        Text(text = entry.value.toString())
+                if (extend){
+                    for (entry in balance.values.entries){
+                        Row(modifier = Modifier
+                            .padding(10.dp)
+                            .fillMaxWidth(),
+                            horizontalArrangement = Arrangement.SpaceBetween) {
+                            Text(text = entry.key)
+                            Text(text = entry.value.toString())
+                        }
                     }
                 }
             }
