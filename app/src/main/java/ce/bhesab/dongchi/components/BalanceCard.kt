@@ -6,7 +6,7 @@ import androidx.compose.material3.Button
 import androidx.compose.material3.Card
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import ce.bhesab.dongchi.model.Balance
+import ce.bhesab.dongchi.model.group.Balance
 
 @Composable
 fun BalanceCard(balance: Balance, extend: Boolean, onExtendChange: (Boolean) -> Unit){

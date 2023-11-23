@@ -1,18 +1,24 @@
 package ce.bhesab.dongchi.components
 
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Card
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import ce.bhesab.dongchi.model.Event
-import ce.bhesab.dongchi.model.Expense
-import ce.bhesab.dongchi.model.Transaction
+import androidx.compose.ui.unit.dp
+import ce.bhesab.dongchi.model.group.Event
+import ce.bhesab.dongchi.model.group.Expense
+import ce.bhesab.dongchi.model.group.Transaction
 
 @Composable
 fun EventCard(event: Event){
-    Card {
-        Row {
+    Card(modifier = Modifier.padding(15.dp).fillMaxWidth()) {
+        Row(modifier = Modifier.padding(10.dp).fillMaxWidth(),
+            horizontalArrangement = Arrangement.SpaceBetween) {
             if (event is Expense){
                 Text(text = event.goal)
                 Text(text = event.from)
@@ -30,5 +36,5 @@ fun EventCard(event: Event){
 @Preview(showBackground = true)
 @Composable
 fun EventPreview() {
-    ce.bhesab.dongchi.components.EventCard(event = Expense(1, 22.1, "Mohammad", "Salary"))
+    ce.bhesab.dongchi.components.EventCard(event = Transaction(1, 22.1, "Mohammad", "Amirhossein"))
 }

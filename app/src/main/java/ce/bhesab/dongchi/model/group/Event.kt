@@ -1,4 +1,4 @@
-package ce.bhesab.dongchi.model
+package ce.bhesab.dongchi.model.group
 
 open class Event(
     open val id: Int,

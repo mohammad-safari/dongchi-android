@@ -1,4 +1,6 @@
-package ce.bhesab.dongchi.model
+package ce.bhesab.dongchi.model.group
+
+import ce.bhesab.dongchi.model.group.Event
 
 data class Transaction(
     override val id: Int,
