@@ -21,78 +21,79 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import ce.bhesab.dongchi.component.BottomNavigationBar
 import ce.bhesab.dongchi.component.PlusButtonInsert
 import ce.bhesab.dongchi.model.viewGroup.Group
 
-class MainGroup {
+@Composable
+fun ViewGroups() {
+    GroupList(groups = DataSource().loadGroups())
+}
 
-    @Composable
-    fun ViewGroups() {
-        GroupList(groups = DataSource().loadGroups())
-    }
-
-    @Composable
-    fun GroupList(groups: List<Group>, modifier: Modifier = Modifier) {
-        Box(
-            modifier = modifier
-                .fillMaxSize()
-                .padding(16.dp)
-        ) {
-            LazyColumn(modifier = modifier) {
-                items(groups) { group ->
-                    GroupLine(
-                        group = group,
-                        modifier = modifier.padding(8.dp)
-                    )
-                }
-            }
-
-            PlusButtonInsert (modifier = modifier.align(Alignment.BottomEnd)){
-                //onClick code
-            }
-
-
-        }
-    }
-
-
-    @Composable
-    fun GroupLine(group: Group, modifier: Modifier = Modifier) {
-        Card(modifier = modifier) {
-            Row {
-                Image(
-                    painter = painterResource(group.imageGroupId),
-                    contentDescription = stringResource(group.stringGroupDataId),
-                    modifier = Modifier
-                        .fillMaxSize()
-                        .height(100.dp),
-                    contentScale = ContentScale.Crop
+@Composable
+fun GroupList(groups: List<Group>, modifier: Modifier = Modifier) {
+    Box(
+        modifier = modifier
+            .fillMaxSize()
+            .padding(16.dp)
+    ) {
+        LazyColumn(modifier = modifier) {
+            items(groups) { group ->
+                GroupLine(
+                    group = group,
+                    modifier = modifier.padding(8.dp)
                 )
-                Column {
-                    Text(
-                        text = stringResource(id = group.name),
-                        modifier = Modifier.align(Alignment.CenterHorizontally),
-                        style = MaterialTheme.typography.headlineMedium
-                    )
+            }
+        }
 
-                    Text(
-                        text = LocalContext.current.getString(group.stringGroupDataId),
-                        modifier = Modifier
-                            .padding(16.dp)
-                            .align(Alignment.End),
-                        style = MaterialTheme.typography.headlineSmall
-                    )
-                }
+        PlusButtonInsert(modifier = modifier.align(Alignment.BottomEnd)) {
+            //onClick code
+        }
+
+        BottomNavigationBar(onGroupsClick = { /*TODO*/ }, onFriendsClick = { /*TODO*/ }, onAccountClick = {}, modifier = Modifier
+            .align(Alignment.BottomEnd)
+        )
+
+
+    }
+}
+
+
+@Composable
+fun GroupLine(group: Group, modifier: Modifier = Modifier) {
+    Card(modifier = modifier) {
+        Row {
+            Image(
+                painter = painterResource(group.imageGroupId),
+                contentDescription = stringResource(group.stringGroupDataId),
+                modifier = Modifier
+                    .fillMaxSize()
+                    .height(100.dp),
+                contentScale = ContentScale.Crop
+            )
+            Column {
+                Text(
+                    text = stringResource(id = group.name),
+                    modifier = Modifier.align(Alignment.CenterHorizontally),
+                    style = MaterialTheme.typography.headlineMedium
+                )
+
+                Text(
+                    text = LocalContext.current.getString(group.stringGroupDataId),
+                    modifier = Modifier
+                        .padding(16.dp)
+                        .align(Alignment.End),
+                    style = MaterialTheme.typography.headlineSmall
+                )
             }
         }
     }
+}
 
-    @Preview(showBackground = true)
-    @Composable
-    fun PreviewGroup() {
-        ViewGroups()
-    }
-
+@Preview(showBackground = true)
+@Composable
+fun PreviewGroup() {
+    ViewGroups()
 }
 
 
