@@ -47,7 +47,7 @@ fun GroupScreen(group: Group) {
     }
 }
 
-@Preview(showBackground = true)
+@Preview(showBackground = true, showSystemUi = true)
 @Composable
 fun GroupScreenPreview(){
     val eventList = listOf<Event>(
