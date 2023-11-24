@@ -17,9 +17,6 @@ import ce.bhesab.dongchi.model.group.Balance
 @Composable
 fun BalanceCard(balance: Balance){
     var extend = true
-//    var onExtendChange : () ->Unit  = {
-//        extend = !extend
-//    }
     Card {
             Column (modifier = Modifier
                 .padding(15.dp)
@@ -30,11 +27,11 @@ fun BalanceCard(balance: Balance){
                     horizontalArrangement = Arrangement.SpaceBetween) {
                     Text(text = balance.user)
                     Button(onClick = {extend = !extend}) {
+                        /* TODO */
                         if (extend) Text(text = "up")
                         else Text(text = "down")
                     }
                 }
-//            Spacer()
                 if (extend){
                     for (entry in balance.values.entries){
                         Card {

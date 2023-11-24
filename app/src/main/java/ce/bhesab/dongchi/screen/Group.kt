@@ -13,9 +13,14 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.setValue
 import ce.bhesab.dongchi.components.BalanceList
 import ce.bhesab.dongchi.components.EventList
 import ce.bhesab.dongchi.model.group.Balance
@@ -24,10 +29,13 @@ import ce.bhesab.dongchi.model.group.Expense
 import ce.bhesab.dongchi.model.group.Group
 import ce.bhesab.dongchi.model.group.GroupScreenState
 import ce.bhesab.dongchi.model.group.Transaction
+import ce.bhesab.dongchi.R
 
 @Composable
 fun GroupScreen(group: Group) {
-    var state: GroupScreenState = GroupScreenState.EVENT
+    var state by remember {
+        mutableStateOf(GroupScreenState.EVENT)
+    }
 
     Scaffold(
         floatingActionButton = {
@@ -44,10 +52,10 @@ fun GroupScreen(group: Group) {
                 .fillMaxWidth(),
                 horizontalArrangement = Arrangement.SpaceAround){
                 Button(onClick = {state = GroupScreenState.BALANCE}) {
-                    Text(text = "Balances")
+                    Text(text = stringResource(id = R.string.balances))
                 }
                 Button(onClick = {state = GroupScreenState.EVENT}) {
-                    Text(text = "Events")
+                    Text(text = stringResource(id = R.string.events))
                 }
             }
             if (state == GroupScreenState.EVENT){
@@ -62,7 +70,7 @@ fun GroupScreen(group: Group) {
 
 }
 
-@Preview(showBackground = true, showSystemUi = true)
+@Preview(showBackground = true, showSystemUi = true, locale = "fa")
 @Composable
 fun GroupScreenPreview(){
     val eventList = listOf<Event>(
