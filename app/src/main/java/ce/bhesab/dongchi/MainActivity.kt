@@ -9,15 +9,17 @@ import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import ce.bhesab.dongchi.navigator.DongchiNavHostController
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
 import ce.bhesab.dongchi.screen.DashboardScreen
+import ce.bhesab.dongchi.screen.Intro
 import ce.bhesab.dongchi.theme.DongchiTheme
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            DongchiNavHostController()
             DongchiTheme {
                 // A surface container using the 'background' color from the theme
                 Surface(
@@ -33,8 +35,17 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 fun Root(modifier: Modifier = Modifier) {
-    val dashboardScreen = DashboardScreen()
-    dashboardScreen.Dashboard(navController = null, overview = dashboardScreen.mockOverview)
+    var navController = rememberNavController()
+    var startDestination = "intro"
+    NavHost(navController = navController, startDestination = startDestination){
+        composable("intro"){
+            Intro(navController)
+        }
+        composable("dashboard"){
+            val dashboardScreen = DashboardScreen()
+            dashboardScreen.Dashboard(navController = navController, overview = dashboardScreen.mockOverview)
+        }
+    }
 }
 
 @Preview(showBackground = true, showSystemUi = true, locale = "fa")
