@@ -5,7 +5,12 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Add
 import androidx.compose.material3.Button
+import androidx.compose.material3.FloatingActionButton
+import androidx.compose.material3.Icon
+import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -24,27 +29,37 @@ import ce.bhesab.dongchi.model.group.Transaction
 fun GroupScreen(group: Group) {
     var state: GroupScreenState = GroupScreenState.EVENT
 
-    Column (modifier = Modifier
-        .padding(15.dp)
-        .fillMaxWidth()) {
-        Row (modifier = Modifier
-            .padding(10.dp)
-            .fillMaxWidth(),
-            horizontalArrangement = Arrangement.SpaceAround){
-            Button(onClick = {state = GroupScreenState.BALANCE}) {
-                Text(text = "Balances")
-            }
-            Button(onClick = {state = GroupScreenState.EVENT}) {
-                Text(text = "Events")
+    Scaffold(
+        floatingActionButton = {
+            FloatingActionButton(onClick = { /* Handle FAB click */ }) {
+                Icon(Icons.Filled.Add, contentDescription = "Add")
             }
         }
-        if (state == GroupScreenState.EVENT){
-            EventList(eventList = group.eventList)
-        }
-        else if (state == GroupScreenState.BALANCE){
-            BalanceList(balanceList = group.balanceList)
+    ) { it ->
+        Column (modifier = Modifier
+            .padding(15.dp)
+            .fillMaxWidth()) {
+            Row (modifier = Modifier
+                .padding(20.dp)
+                .fillMaxWidth(),
+                horizontalArrangement = Arrangement.SpaceAround){
+                Button(onClick = {state = GroupScreenState.BALANCE}) {
+                    Text(text = "Balances")
+                }
+                Button(onClick = {state = GroupScreenState.EVENT}) {
+                    Text(text = "Events")
+                }
+            }
+            if (state == GroupScreenState.EVENT){
+                EventList(eventList = group.eventList)
+            }
+            else if (state == GroupScreenState.BALANCE){
+                BalanceList(balanceList = group.balanceList)
+            }
         }
     }
+
+
 }
 
 @Preview(showBackground = true, showSystemUi = true)
