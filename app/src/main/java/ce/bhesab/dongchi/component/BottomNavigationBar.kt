@@ -25,6 +25,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -35,7 +36,7 @@ fun BottomNavigationBar(onGroupsClick: () -> Unit, onFriendsClick: () -> Unit, o
         modifier = modifier
             .fillMaxWidth()
             .height(85.dp)
-            .background(Color.Black),
+            .background(MaterialTheme.colors.primary),
         horizontalArrangement = Arrangement.SpaceBetween
     ) {
         //  "Groups"
@@ -85,10 +86,10 @@ fun BottomNavigationItem(icon: ImageVector, text : String , onClick: () -> Unit,
         Text(
             text = text,
             modifier = Modifier
-                .align(Alignment.CenterHorizontally)
                 .size(60.dp),
             Color.White,
             fontSize = 15.sp,
+            textAlign = TextAlign.Center
         )
     }
 }
