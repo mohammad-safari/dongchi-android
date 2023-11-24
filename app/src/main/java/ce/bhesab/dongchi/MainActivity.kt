@@ -9,6 +9,7 @@ import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import ce.bhesab.dongchi.navigator.DongchiNavHostController
 import ce.bhesab.dongchi.screen.DashboardScreen
 import ce.bhesab.dongchi.theme.DongchiTheme
 
@@ -16,6 +17,7 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
+            DongchiNavHostController()
             DongchiTheme {
                 // A surface container using the 'background' color from the theme
                 Surface(
