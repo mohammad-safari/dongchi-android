@@ -23,4 +23,10 @@
         %3$s
         داری!</string>
     <string name="recent">اخیرا</string>
+    <string name="invite_code">کد دعوت</string>
+    <string name="invite_description">با این کد می‌توانید افراد را به گروه دعوت کنید.</string>
+    <string name="invite">دعوت</string>
+    <string name="later">بعدا</string>
+    <string name="balances">حساب‌کتاب</string>
+    <string name="events">رویدادها</string>
 </resources>
