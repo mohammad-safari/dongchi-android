@@ -74,14 +74,14 @@ fun GroupLine(group: Group, modifier: Modifier = Modifier) {
                 .background(Color.LightGray)
                 .fillMaxWidth()
         ){
-            Image(
-                painter = painterResource(group.imageGroupId),
-                contentDescription = stringResource(group.stringGroupDataId),
-                modifier = Modifier
-                    .size(width = 100.dp, height = 100.dp)
-                    .clip(MaterialTheme.shapes.medium),
-                contentScale = ContentScale.Crop
-            )
+//            Image(
+//                painter = painterResource(group.imageGroupId),
+//                contentDescription = stringResource(group.stringGroupDataId),
+//                modifier = Modifier
+//                    .size(width = 100.dp, height = 100.dp)
+//                    .clip(MaterialTheme.shapes.medium),
+//                contentScale = ContentScale.Crop
+//            )
             Column {
                 Text(
                     text = stringResource(id = group.name),

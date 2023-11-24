@@ -12,7 +12,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
-import androidx.compose.material.MaterialTheme
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.AccountBox
 import androidx.compose.material.icons.filled.Home
@@ -36,7 +36,7 @@ fun BottomNavigationBar(onGroupsClick: () -> Unit, onFriendsClick: () -> Unit, o
         modifier = modifier
             .fillMaxWidth()
             .height(85.dp)
-            .background(MaterialTheme.colors.primary),
+            .background(MaterialTheme.colorScheme.primary),
         horizontalArrangement = Arrangement.SpaceBetween
     ) {
         //  "Groups"
