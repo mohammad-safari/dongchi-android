@@ -16,8 +16,8 @@ import ce.bhesab.dongchi.model.group.Transaction
 
 @Composable
 fun EventCard(event: Event){
-    Card(modifier = Modifier.padding(15.dp).fillMaxWidth()) {
-        Row(modifier = Modifier.padding(10.dp).fillMaxWidth(),
+    Card(modifier = Modifier.padding(20.dp).fillMaxWidth()) {
+        Row(modifier = Modifier.padding(20.dp).fillMaxWidth(),
             horizontalArrangement = Arrangement.SpaceBetween) {
             if (event is Expense){
                 Text(text = event.goal)
