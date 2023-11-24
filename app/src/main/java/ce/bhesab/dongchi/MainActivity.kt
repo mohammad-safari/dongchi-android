@@ -6,10 +6,10 @@ import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import ce.bhesab.dongchi.screen.DashboardScreen
 import ce.bhesab.dongchi.theme.DongchiTheme
 
 class MainActivity : ComponentActivity() {
@@ -22,7 +22,7 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    Greeting("Android")
+                    Root()
                 }
             }
         }
@@ -30,17 +30,15 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
+fun Root(modifier: Modifier = Modifier) {
+    val dashboardScreen = DashboardScreen()
+    dashboardScreen.Dashboard(navController = null, overview = dashboardScreen.mockOverview)
 }
 
-@Preview(showBackground = true)
+@Preview(showBackground = true, showSystemUi = true, locale = "fa")
 @Composable
 fun GreetingPreview() {
     DongchiTheme {
-        Greeting("Android")
+        Root()
     }
 }

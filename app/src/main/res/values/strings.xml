@@ -1,4 +1,11 @@
 <resources>
     <string name="app_name">dongchi</string>
-    <string name="title_activity_main">MainActivity</string>
+    <string name="title_activity_main">dongchi</string>
+    <string name="overviewTitle">Shares Overview</string>
+    <string name="cred">cred</string>
+    <string name="debt">debt</string>
+    <string name="debtBrief">%1$d %2$s debt to %3$d to groups</string>
+    <string name="credBrief">%1$d %2$s cred to %3$d from groups</string>
+    <string name="balanceBrief">overall you have %1$d %2$s %3$s!</string>
+    <string name="recent">Recent</string>
 </resources>
