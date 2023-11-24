@@ -14,4 +14,9 @@
     <string name="later">Later</string>
     <string name="balances">Balances</string>
     <string name="events">Events</string>
+    <string name="shareScreenTitle">Bill Split</string>
+    <string name="selectAll">select all</string>
+    <string name="confirmParticipantsShare">confirm shares</string>
+    <string name="back">back</string>
+>>>>>>> master
 </resources>

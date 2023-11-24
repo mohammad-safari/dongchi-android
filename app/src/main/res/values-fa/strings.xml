@@ -29,4 +29,11 @@
     <string name="later">بعدا</string>
     <string name="balances">حساب‌کتاب</string>
     <string name="events">رویدادها</string>
+    <string name="shareScreenTitle">سهم افراد</string>
+    <string name="selectAll">انتخاب همه</string>
+    <string name="confirmParticipantsShare">تایید سهم‌ها</string>
+    <string name="back">بازگشت</string>
+
+
+>>>>>>> master
 </resources>
