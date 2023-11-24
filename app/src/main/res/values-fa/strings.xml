@@ -23,4 +23,10 @@
         %3$s
         داری!</string>
     <string name="recent">اخیرا</string>
+    <string name="shareScreenTitle">سهم افراد</string>
+    <string name="selectAll">انتخاب همه</string>
+    <string name="confirmParticipantsShare">تایید سهم‌ها</string>
+    <string name="back">بازگشت</string>
+
+
 </resources>

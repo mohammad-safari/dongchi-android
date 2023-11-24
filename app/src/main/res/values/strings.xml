@@ -8,4 +8,8 @@
     <string name="credBrief">%1$d %2$s cred to %3$d from groups</string>
     <string name="balanceBrief">overall you have %1$d %2$s %3$s!</string>
     <string name="recent">Recent</string>
+    <string name="shareScreenTitle">Bill Split</string>
+    <string name="selectAll">select all</string>
+    <string name="confirmParticipantsShare">confirm shares</string>
+    <string name="back">back</string>
 </resources>
