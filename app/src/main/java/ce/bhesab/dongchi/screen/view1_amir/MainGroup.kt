@@ -35,7 +35,6 @@ fun GroupList(groups: List<Group>, modifier: Modifier = Modifier) {
     Box(
         modifier = modifier
             .fillMaxSize()
-            .padding(16.dp)
     ) {
         LazyColumn(modifier = modifier) {
             items(groups) { group ->
@@ -46,7 +45,7 @@ fun GroupList(groups: List<Group>, modifier: Modifier = Modifier) {
             }
         }
 
-        PlusButtonInsert(modifier = modifier.align(Alignment.BottomEnd)) {
+        PlusButtonInsert(modifier = modifier.align(Alignment.BottomEnd).padding(bottom = 80.dp)) {
             //onClick code
         }
 

@@ -26,7 +26,6 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 
@@ -35,8 +34,8 @@ fun BottomNavigationBar(onGroupsClick: () -> Unit, onFriendsClick: () -> Unit, o
     Row(
         modifier = modifier
             .fillMaxWidth()
-            .height(80.dp)
-            .padding(16.dp),
+            .height(85.dp)
+            .background(Color.Black),
         horizontalArrangement = Arrangement.SpaceBetween
     ) {
         //  "Groups"
@@ -68,18 +67,16 @@ fun BottomNavigationItem(icon: ImageVector, text : String , onClick: () -> Unit,
         modifier = modifier
             .clickable(onClick = onClick)
             .fillMaxHeight()
-            .width(100.dp)
-            .background(Color.Black)
+            .width(110.dp)
             .padding(8.dp),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Icon(
             imageVector = icon,
             modifier = modifier
-                .size(20.dp)
-                .clip(MaterialTheme.shapes.medium)
-                .background(MaterialTheme.colors.primary),
-            tint = Color.Cyan,
+                .size(40.dp)
+                .clip(MaterialTheme.shapes.large),
+            tint = Color.White,
             contentDescription = null,
             )
 
@@ -88,9 +85,11 @@ fun BottomNavigationItem(icon: ImageVector, text : String , onClick: () -> Unit,
         Text(
             text = text,
             modifier = Modifier
-                .background(MaterialTheme.colors.primary)
-                .align(Alignment.CenterHorizontally),
-            Color.Cyan)
+                .align(Alignment.CenterHorizontally)
+                .size(60.dp),
+            Color.White,
+            fontSize = 15.sp,
+        )
     }
 }
 
