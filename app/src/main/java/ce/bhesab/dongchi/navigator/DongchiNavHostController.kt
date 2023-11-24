@@ -3,11 +3,9 @@ package ce.bhesab.dongchi.navigator
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
-import  androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import ce.bhesab.dongchi.Root
 import ce.bhesab.dongchi.screen.DashboardScreen
 import ce.bhesab.dongchi.screen.Intro
 
