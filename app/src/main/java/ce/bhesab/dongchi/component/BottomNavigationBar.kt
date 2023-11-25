@@ -12,12 +12,12 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.AccountBox
-import androidx.compose.material.icons.filled.Home
-import androidx.compose.material.icons.filled.Person
+import androidx.compose.material.icons.outlined.AccountBox
+import androidx.compose.material.icons.outlined.Home
+import androidx.compose.material.icons.outlined.Person
 import androidx.compose.material3.Icon
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -25,10 +25,12 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import ce.bhesab.dongchi.R
 
 @Composable
 fun BottomNavigationBar(onGroupsClick: () -> Unit, onFriendsClick: () -> Unit, onAccountClick: () -> Unit, modifier: Modifier = Modifier) {
@@ -41,22 +43,22 @@ fun BottomNavigationBar(onGroupsClick: () -> Unit, onFriendsClick: () -> Unit, o
     ) {
         //  "Groups"
         BottomNavigationItem(
-            icon = Icons.Default.Home,
-            text =  "Groups",
+            icon = Icons.Outlined.Home,
+            text =  stringResource(R.string.dashboard),
             onClick = onGroupsClick
         )
 
         //  "Friends"
         BottomNavigationItem(
-            icon = Icons.Default.Person,
-            text = "Friends",
+            icon = Icons.Outlined.Person,
+            text = stringResource(R.string.groups),
             onClick = onFriendsClick
         )
 
         //  "Account"
         BottomNavigationItem(
-            icon = Icons.Default.AccountBox,
-            text =  "Account",
+            icon = Icons.Outlined.AccountBox,
+            text =  stringResource(R.string.account),
             onClick = onAccountClick
         )
     }
@@ -95,7 +97,7 @@ fun BottomNavigationItem(icon: ImageVector, text : String , onClick: () -> Unit,
 }
 
 @Composable
-@Preview
+@Preview(showBackground = true, locale = "fa")
 fun BottomNavigationBarPreview() {
     BottomNavigationBar({}, {}, {})
 }

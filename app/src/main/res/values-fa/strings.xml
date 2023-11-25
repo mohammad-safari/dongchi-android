@@ -32,7 +32,15 @@
     <string name="shareScreenTitle">سهم افراد</string>
     <string name="selectAll">انتخاب همه</string>
     <string name="confirmParticipantsShare">تایید سهم‌ها</string>
+    <string name="password">گذر واژه</string>
+    <string name="accountQ">قبلا ثبت نام نکرده اید؟</string>
+    <string name="account">حساب</string>
+    <string name="logIn">ورود</string>
+    <string name="signUp">ثبت نام</string>
+    <string name="email">ایمیل</string>
     <string name="back">بازگشت</string>
+    <string name="groups">گروه ها</string>
+    <string name="dashboard">داشبورد</string>
 
 
 </resources>

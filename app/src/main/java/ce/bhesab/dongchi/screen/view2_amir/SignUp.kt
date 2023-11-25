@@ -8,13 +8,14 @@ import androidx.compose.material.icons.filled.MailOutline
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import ce.bhesab.dongchi.R
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun SignUpScreen() {
     var email by remember { mutableStateOf("") }
@@ -29,7 +30,7 @@ fun SignUpScreen() {
         Spacer(modifier = Modifier.height(16.dp))
 
         Text(
-            text = "Sign Up",
+            text = (stringResource(R.string.signUp)),
             style = MaterialTheme.typography.bodyMedium
         )
 
@@ -41,7 +42,7 @@ fun SignUpScreen() {
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(vertical = 8.dp),
-            label = { Text("Email") },
+            label = { Text(stringResource(R.string.email)) },
             leadingIcon = {
                 Icon(Icons.Default.MailOutline, contentDescription = null)
             }
@@ -53,7 +54,7 @@ fun SignUpScreen() {
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(vertical = 8.dp),
-            label = { Text("Password") },
+            label = { Text(stringResource(R.string.password)) },
             visualTransformation = if (isPasswordVisible) VisualTransformation.None else PasswordVisualTransformation(),
             keyboardOptions = KeyboardOptions.Default.copy(
                 imeAction = ImeAction.Done
@@ -74,7 +75,7 @@ fun SignUpScreen() {
                 .fillMaxWidth()
                 .height(50.dp)
         ) {
-            Text("Sign Up")
+            Text(stringResource(R.string.signUp))
         }
 
         Spacer(modifier = Modifier.height(16.dp))
@@ -83,9 +84,9 @@ fun SignUpScreen() {
             modifier = Modifier.fillMaxWidth(),
             horizontalArrangement = Arrangement.Center
         ) {
-            Text("Already have an account? ")
+            Text(stringResource(R.string.accountQ))
             Text(
-                "Log In",
+                stringResource(R.string.logIn),
                 color = MaterialTheme.colorScheme.primary,
                 modifier = Modifier.clickable { /* Handle navigation to login screen */ }
             )
@@ -93,7 +94,7 @@ fun SignUpScreen() {
     }
 }
 
-@Preview
+@Preview(showSystemUi = true, locale = "fa")
 @Composable
 fun Amo() {
     SignUpScreen()

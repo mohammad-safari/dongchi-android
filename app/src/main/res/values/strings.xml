@@ -18,11 +18,12 @@
     <string name="selectAll">select all</string>
     <string name="confirmParticipantsShare">confirm shares</string>
     <string name="back">back</string>
-    <string name="nothing">nothing</string>
-    <string name="friends">friends</string>
-    <string name="sharafi">sharafi</string>
-    <string name="family">family</string>
-    <string name="company">company</string>
-    <string name="university">university</string>
-    <string name="basketballTeam">basketballTeam</string>
+    <string name="password">Password</string>
+    <string name="accountQ">Already have an account? </string>
+    <string name="account">account</string>
+    <string name="logIn">Log In</string>
+    <string name="signUp">Sign Up</string>
+    <string name="email">Email</string>
+    <string name="groups">Groups</string>
+    <string name="dashboard">Dashboard</string>
 </resources>

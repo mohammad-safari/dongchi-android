@@ -20,9 +20,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import ce.bhesab.dongchi.component.BottomNavigationBar
@@ -74,23 +72,23 @@ fun GroupLine(group: Group, modifier: Modifier = Modifier) {
                 .background(Color.LightGray)
                 .fillMaxWidth()
         ){
-//            Image(
-//                painter = painterResource(group.imageGroupId),
-//                contentDescription = stringResource(group.stringGroupDataId),
-//                modifier = Modifier
-//                    .size(width = 100.dp, height = 100.dp)
-//                    .clip(MaterialTheme.shapes.medium),
-//                contentScale = ContentScale.Crop
-//            )
+            Image(
+                painter = painterResource(group.imageGroupId),
+                contentDescription = group.stringGroupDataId,
+                modifier = Modifier
+                    .size(width = 100.dp, height = 100.dp)
+                    .clip(MaterialTheme.shapes.medium),
+                contentScale = ContentScale.Crop
+            )
             Column {
                 Text(
-                    text = stringResource(id = group.name),
+                    text = group.name,
                     modifier = Modifier.align(Alignment.CenterHorizontally),
                     style = MaterialTheme.typography.headlineMedium
                 )
 
                 Text(
-                    text = LocalContext.current.getString(group.stringGroupDataId),
+                    text = group.stringGroupDataId,
                     modifier = Modifier
                         .padding(16.dp)
                         .align(Alignment.End),
@@ -101,7 +99,7 @@ fun GroupLine(group: Group, modifier: Modifier = Modifier) {
     }
 }
 
-@Preview(showBackground = true)
+@Preview(showBackground = true, showSystemUi = true, locale = "fa")
 @Composable
 fun PreviewGroup() {
     ViewGroups()
