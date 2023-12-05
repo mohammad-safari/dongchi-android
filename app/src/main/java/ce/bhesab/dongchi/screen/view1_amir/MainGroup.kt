@@ -23,25 +23,27 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
 import ce.bhesab.dongchi.component.BottomNavigationBar
 import ce.bhesab.dongchi.component.PlusButtonInsert
 import ce.bhesab.dongchi.model.viewGroup.Group
 
 @Composable
-fun ViewGroups() {
-    GroupList(groups = DataSource().loadGroups())
+fun ViewGroups(navController: NavController?) {
+    GroupList(groups = DataSource().loadGroups(), navController = navController)
 }
 
 @Composable
-fun GroupList(groups: List<Group>, modifier: Modifier = Modifier) {
+fun GroupList(groups: List<Group>, modifier: Modifier = Modifier, navController: NavController?) {
     Box(
         modifier = modifier
             .fillMaxSize()
-            .background(Color.DarkGray)
+            .background(MaterialTheme.colorScheme.background)
     ) {
-        LazyColumn(modifier = modifier
-            .padding(horizontal = 8.dp, vertical = 80.dp)
-            .fillMaxWidth()
+        LazyColumn(
+            modifier = modifier
+                .padding(horizontal = 8.dp, vertical = 80.dp)
+                .fillMaxWidth()
         ) {
             items(groups) { group ->
                 GroupLine(
@@ -51,12 +53,19 @@ fun GroupList(groups: List<Group>, modifier: Modifier = Modifier) {
             }
         }
 
-        PlusButtonInsert(modifier = modifier.align(Alignment.BottomEnd).padding(bottom = 80.dp)) {
+        PlusButtonInsert(
+            modifier = modifier
+                .align(Alignment.BottomEnd)
+                .padding(bottom = 80.dp),
+            navController
+        ) {
             //onClick code
         }
 
-        BottomNavigationBar(onGroupsClick = { /*TODO*/ }, onFriendsClick = { /*TODO*/ }, onAccountClick = {}, modifier = Modifier
-            .align(Alignment.BottomEnd)
+        BottomNavigationBar(
+            modifier = Modifier
+                .align(Alignment.BottomEnd),
+            navController = navController
         )
 
 
@@ -67,11 +76,11 @@ fun GroupList(groups: List<Group>, modifier: Modifier = Modifier) {
 @Composable
 fun GroupLine(group: Group, modifier: Modifier = Modifier) {
     Card(modifier = modifier) {
-        Row (
+        Row(
             modifier = Modifier
                 .background(Color.LightGray)
                 .fillMaxWidth()
-        ){
+        ) {
             Image(
                 painter = painterResource(group.imageGroupId),
                 contentDescription = group.stringGroupDataId,
@@ -102,7 +111,7 @@ fun GroupLine(group: Group, modifier: Modifier = Modifier) {
 @Preview(showBackground = true, showSystemUi = true, locale = "fa")
 @Composable
 fun PreviewGroup() {
-    ViewGroups()
+    ViewGroups(null)
 }
 
 

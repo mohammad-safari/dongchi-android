@@ -30,10 +30,11 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
 import ce.bhesab.dongchi.R
 
 @Composable
-fun BottomNavigationBar(onGroupsClick: () -> Unit, onFriendsClick: () -> Unit, onAccountClick: () -> Unit, modifier: Modifier = Modifier) {
+fun BottomNavigationBar(navController: NavController?, modifier: Modifier = Modifier) {
     Row(
         modifier = modifier
             .fillMaxWidth()
@@ -45,21 +46,21 @@ fun BottomNavigationBar(onGroupsClick: () -> Unit, onFriendsClick: () -> Unit, o
         BottomNavigationItem(
             icon = Icons.Outlined.Home,
             text =  stringResource(R.string.dashboard),
-            onClick = onGroupsClick
+            onClick = {navController?.navigate("dashboard")}
         )
 
         //  "Friends"
         BottomNavigationItem(
             icon = Icons.Outlined.Person,
             text = stringResource(R.string.groups),
-            onClick = onFriendsClick
+            onClick = {navController?.navigate("groups")}
         )
 
         //  "Account"
         BottomNavigationItem(
             icon = Icons.Outlined.AccountBox,
             text =  stringResource(R.string.account),
-            onClick = onAccountClick
+            onClick = {navController?.navigate("group")}
         )
     }
 }
@@ -99,5 +100,5 @@ fun BottomNavigationItem(icon: ImageVector, text : String , onClick: () -> Unit,
 @Composable
 @Preview(showBackground = true, locale = "fa")
 fun BottomNavigationBarPreview() {
-    BottomNavigationBar({}, {}, {})
+    BottomNavigationBar(null)
 }

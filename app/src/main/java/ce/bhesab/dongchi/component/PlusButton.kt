@@ -13,12 +13,14 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
 
 
 @Composable
     fun PlusButtonInsert(
-        modifier: Modifier = Modifier,
-        onClick: () -> Unit
+    modifier: Modifier = Modifier,
+    navController: NavController?,
+    onClick: () -> Unit
     ) {
         Button(
             onClick = onClick,
@@ -36,6 +38,6 @@ import androidx.compose.ui.unit.dp
     @Composable
     @Preview
     fun PlusButtonPreview() {
-        PlusButtonInsert(onClick = { /* Handle button click */ })
+        PlusButtonInsert(navController = null) { /* Handle button click */ }
 
     }
