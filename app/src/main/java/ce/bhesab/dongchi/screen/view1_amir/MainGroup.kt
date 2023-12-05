@@ -24,8 +24,8 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
-import ce.bhesab.dongchi.component.BottomNavigationBar
-import ce.bhesab.dongchi.component.PlusButtonInsert
+import ce.bhesab.dongchi.components.BottomNavigationBar
+import ce.bhesab.dongchi.components.PlusButtonInsert
 import ce.bhesab.dongchi.model.viewGroup.Group
 
 @Composable
