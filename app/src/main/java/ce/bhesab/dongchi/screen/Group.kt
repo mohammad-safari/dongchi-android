@@ -31,8 +31,8 @@ import ce.bhesab.dongchi.model.group.Group
 import ce.bhesab.dongchi.model.group.GroupScreenState
 import ce.bhesab.dongchi.model.group.Transaction
 import ce.bhesab.dongchi.R
-import ce.bhesab.dongchi.component.BottomNavigationBar
-import ce.bhesab.dongchi.component.PlusButtonInsert
+import ce.bhesab.dongchi.components.BottomNavigationBar
+import ce.bhesab.dongchi.components.PlusButtonInsert
 
 @Composable
 fun GroupScreen(group: Group, navController: NavController?, modifier: Modifier = Modifier) {

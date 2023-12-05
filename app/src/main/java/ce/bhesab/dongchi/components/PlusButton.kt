@@ -1,4 +1,4 @@
-package ce.bhesab.dongchi.component
+package ce.bhesab.dongchi.components
 
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.height

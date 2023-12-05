@@ -23,7 +23,7 @@ import ce.bhesab.dongchi.screen.GroupScreen
 import ce.bhesab.dongchi.screen.Intro
 import ce.bhesab.dongchi.screen.SharesScreen
 import ce.bhesab.dongchi.screen.view1_amir.ViewGroups
-import ce.bhesab.dongchi.screen.view2_amir.SignUpScreen
+import ce.bhesab.dongchi.screen.SignUpScreen
 import ce.bhesab.dongchi.theme.DongchiTheme
 
 class MainActivity : ComponentActivity() {

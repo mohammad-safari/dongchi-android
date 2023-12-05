@@ -27,8 +27,8 @@ import androidx.compose.ui.unit.dp
 import androidx.core.content.res.ResourcesCompat
 import androidx.navigation.NavController
 import ce.bhesab.dongchi.R
-import ce.bhesab.dongchi.component.BottomNavigationBar
-import ce.bhesab.dongchi.component.PlusButtonInsert
+import ce.bhesab.dongchi.components.BottomNavigationBar
+import ce.bhesab.dongchi.components.PlusButtonInsert
 import ce.bhesab.dongchi.model.dashboard.ChartData
 import ce.bhesab.dongchi.model.dashboard.Overview
 import ce.bhesab.dongchi.theme.DongchiTheme

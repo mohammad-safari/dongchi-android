@@ -1,4 +1,4 @@
-package ce.bhesab.dongchi.screen.view2_amir
+package ce.bhesab.dongchi.screen
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
