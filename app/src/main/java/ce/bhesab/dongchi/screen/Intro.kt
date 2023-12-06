@@ -1,6 +1,5 @@
 package ce.bhesab.dongchi.screen
 
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -29,7 +28,7 @@ fun Intro(navController: NavController?){
         Row(modifier = Modifier.fillMaxWidth(),
             horizontalArrangement = Arrangement.Center,
             verticalAlignment = Alignment.CenterVertically) {
-            Button(onClick = {navController?.navigate("dashboard")}) {
+            Button(onClick = {navController?.navigate("signup")}) {
                 Text(text = "skip")
             }
         }
