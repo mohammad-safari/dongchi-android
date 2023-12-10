@@ -41,6 +41,12 @@
     <string name="back">بازگشت</string>
     <string name="groups">گروه ها</string>
     <string name="dashboard">داشبورد</string>
-
-
+    <string name="slide_one_top_text">به دونگ‌چی خوش آمدید</string>
+    <string name="slide_one_down_text">دونگتون رو توی این محیط کاربرپسند پرداخت کنید</string>
+    <string name="slide_two_top_text">گروه بسازید</string>
+    <string name="slide_two_down_text">با ساختن گروه و ادد کردن دوستاتون از هزینه‌ها و دونگ‌ها خبردارشون کنید</string>
+    <string name="slide_three_top_text">رویداد ایجاد کنید</string>
+    <string name="slide_three_down_text">با ایجاد رویداد دونگتون رو محاسبه کنید و به دوستانتون اعلان بدید</string>
+    <string name="slide_four_top_text">حساب‌کتاب‌هارو ببینید</string>
+    <string name="slide_four_down_text">لیست دونگ‌هارو ببینید تا بتونید یر به یرشون کنید</string>
 </resources>
