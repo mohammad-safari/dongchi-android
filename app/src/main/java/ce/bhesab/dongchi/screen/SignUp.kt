@@ -11,10 +11,12 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Create
 import androidx.compose.material.icons.filled.MailOutline
+import androidx.compose.material.icons.filled.Person
+import androidx.compose.material.icons.filled.Refresh
 import androidx.compose.material3.Button
 import androidx.compose.material3.Icon
-import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
@@ -30,14 +32,17 @@ import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import ce.bhesab.dongchi.R
 
 @Composable
     fun SignUpScreen(navController: NavController?) {
+        var name by remember { mutableStateOf("") }
         var email by remember { mutableStateOf("") }
         var password by remember { mutableStateOf("") }
-        var isPasswordVisible by remember { mutableStateOf(false) }
+        var repeatPassword by remember { mutableStateOf("") }
+        val isPasswordVisible by remember { mutableStateOf(false) }
 
         Column(
             modifier = Modifier
@@ -46,12 +51,29 @@ import ce.bhesab.dongchi.R
         ) {
             Spacer(modifier = Modifier.height(16.dp))
 
+
+
             Text(
                 text = (stringResource(R.string.signUp)),
-                style = MaterialTheme.typography.bodyMedium
+                style = MaterialTheme.typography.bodyMedium,
+                fontSize = 30.sp
             )
 
             Spacer(modifier = Modifier.height(16.dp))
+
+
+            OutlinedTextField(
+                value = name,
+                onValueChange = { name = it },
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(vertical = 8.dp),
+                label = { Text(stringResource(R.string.name)) },
+                leadingIcon = {
+                    Icon(Icons.Default.Person, contentDescription = null)
+                }
+            )
+
 
             OutlinedTextField(
                 value = email,
@@ -72,16 +94,28 @@ import ce.bhesab.dongchi.R
                     .fillMaxWidth()
                     .padding(vertical = 8.dp),
                 label = { Text(stringResource(R.string.password)) },
+                leadingIcon = {
+                    Icon(Icons.Default.Create, contentDescription = null)
+                },
                 visualTransformation = if (isPasswordVisible) VisualTransformation.None else PasswordVisualTransformation(),
                 keyboardOptions = KeyboardOptions.Default.copy(
                     imeAction = ImeAction.Done
-                ),
-                trailingIcon = {
-                    IconButton(
-                        onClick = { isPasswordVisible = !isPasswordVisible }
-                    ) { // code //
-                    }
-                }
+                )
+            )
+
+            OutlinedTextField(
+                value = repeatPassword,
+                onValueChange = { repeatPassword = it },
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(vertical = 8.dp),
+                label = { Text(stringResource(R.string.repeatPassword)) },
+                leadingIcon = {
+                    Icon(Icons.Default.Refresh, contentDescription = null)            },
+                visualTransformation = if (isPasswordVisible) VisualTransformation.None else PasswordVisualTransformation(),
+                keyboardOptions = KeyboardOptions.Default.copy(
+                    imeAction = ImeAction.Done
+                )
             )
 
             Spacer(modifier = Modifier.height(16.dp))
@@ -92,7 +126,7 @@ import ce.bhesab.dongchi.R
                     .fillMaxWidth()
                     .height(50.dp)
             ) {
-                Text(stringResource(R.string.signUp))
+                Text(stringResource(R.string.signUp), fontSize = 15.sp)
             }
 
             Spacer(modifier = Modifier.height(16.dp))
@@ -101,7 +135,7 @@ import ce.bhesab.dongchi.R
                 modifier = Modifier.fillMaxWidth(),
                 horizontalArrangement = Arrangement.Center
             ) {
-                Text(stringResource(R.string.accountQ))
+                Text(stringResource(R.string.alreadyHave))
                 Text(
                     stringResource(R.string.logIn),
                     color = MaterialTheme.colorScheme.primary,

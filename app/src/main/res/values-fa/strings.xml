@@ -32,15 +32,24 @@
     <string name="shareScreenTitle">سهم افراد</string>
     <string name="selectAll">انتخاب همه</string>
     <string name="confirmParticipantsShare">تایید سهم‌ها</string>
-    <string name="password">گذر واژه</string>
-    <string name="accountQ">قبلا ثبت نام نکرده اید؟</string>
+    <string name="password">گذرواژه</string>
+    <string name="repeatPassword">تکرار گذرواژه</string>
+    <string name="alreadyNotHave">قبلا ثبت نام نکرده اید؟</string>
+    <string name="alreadyHave"> آیا قبلا حساب کاربری ایجاد کرده اید؟</string>
     <string name="account">حساب</string>
     <string name="logIn">ورود</string>
+    <string name="name">نام کاربری</string>
     <string name="signUp">ثبت نام</string>
     <string name="email">ایمیل</string>
     <string name="back">بازگشت</string>
+    <string name="create">ایجاد کردن</string>
+    <string name="code">کد دعوت</string>
+    <string name="join">ملحق شدن</string>
     <string name="groups">گروه ها</string>
     <string name="dashboard">داشبورد</string>
+    <string name="groupName">نام گروه</string>
+
+
     <string name="slide_one_top_text">به دونگ‌چی خوش آمدید</string>
     <string name="slide_one_down_text">دونگتون رو توی این محیط کاربرپسند پرداخت کنید</string>
     <string name="slide_two_top_text">گروه بسازید</string>
