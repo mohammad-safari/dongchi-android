@@ -27,6 +27,10 @@
     <string name="signUp">Sign Up</string>
     <string name="email">Email</string>
     <string name="name">name</string>
+    <string name="code">code</string>
+    <string name="create">create</string>
+    <string name="join">join</string>
+    <string name="groupName">group name</string>
     <string name="groups">Groups</string>
     <string name="dashboard">Dashboard</string>
 </resources>

@@ -42,8 +42,12 @@
     <string name="signUp">ثبت نام</string>
     <string name="email">ایمیل</string>
     <string name="back">بازگشت</string>
+    <string name="create">ایجاد کردن</string>
+    <string name="code">کد دعوت</string>
+    <string name="join">ملحق شدن</string>
     <string name="groups">گروه ها</string>
     <string name="dashboard">داشبورد</string>
+    <string name="groupName">نام گروه</string>
 
 
 </resources>
