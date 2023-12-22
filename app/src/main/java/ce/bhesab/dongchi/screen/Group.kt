@@ -12,27 +12,28 @@ import androidx.compose.material3.Button
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.setValue
-import androidx.compose.ui.Alignment
 import androidx.navigation.NavController
+import ce.bhesab.dongchi.R
 import ce.bhesab.dongchi.component.BalanceList
+import ce.bhesab.dongchi.component.BottomNavigationBar
 import ce.bhesab.dongchi.component.EventList
+import ce.bhesab.dongchi.component.PlusButtonInsert
 import ce.bhesab.dongchi.model.group.Balance
 import ce.bhesab.dongchi.model.group.Event
 import ce.bhesab.dongchi.model.group.Expense
 import ce.bhesab.dongchi.model.group.Group
 import ce.bhesab.dongchi.model.group.GroupScreenState
 import ce.bhesab.dongchi.model.group.Transaction
-import ce.bhesab.dongchi.R
-import ce.bhesab.dongchi.component.BottomNavigationBar
-import ce.bhesab.dongchi.component.PlusButtonInsert
+import ce.bhesab.dongchi.theme.DongchiTheme
 
 @Composable
 fun GroupScreen(group: Group, navController: NavController?, modifier: Modifier = Modifier) {
@@ -47,11 +48,11 @@ fun GroupScreen(group: Group, navController: NavController?, modifier: Modifier 
 //            }
 //        }
 //    ) { it ->
-    Box (
+    Box(
         modifier = modifier
             .fillMaxSize()
             .background(MaterialTheme.colorScheme.background)
-    ){
+    ) {
 
         Column(
             modifier = Modifier
@@ -109,5 +110,7 @@ fun GroupScreenPreview() {
         Balance("Mohammad", mapOf("Amirhossein" to 20.0))
     )
     val group = Group(eventList, balanceList)
-    GroupScreen(group = group, null)
+    DongchiTheme {
+        GroupScreen(group = group, null)
+    }
 }

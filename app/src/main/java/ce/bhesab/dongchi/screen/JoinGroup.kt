@@ -24,6 +24,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import ce.bhesab.dongchi.R
+import ce.bhesab.dongchi.theme.DongchiTheme
 
 @Composable
 fun JoinGroup() {
@@ -67,5 +68,7 @@ fun JoinGroup() {
 @Preview(showSystemUi = true, locale = "fa")
 @Composable
 fun Amos() {
-    JoinGroup()
+    DongchiTheme {
+        JoinGroup()
+    }
 }

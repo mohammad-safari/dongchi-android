@@ -33,6 +33,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import ce.bhesab.dongchi.R
+import ce.bhesab.dongchi.theme.DongchiTheme
 
 
 @Composable
@@ -115,5 +116,7 @@ fun LoginScreen(navController: NavController?) {
 @Preview(showSystemUi = true, locale = "fa")
 @Composable
 fun Ao() {
-    LoginScreen(navController = null);
+    DongchiTheme {
+        LoginScreen(navController = null);
+    }
 }

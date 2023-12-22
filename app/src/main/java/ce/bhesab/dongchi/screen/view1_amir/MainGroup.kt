@@ -45,6 +45,7 @@ import ce.bhesab.dongchi.R
 import ce.bhesab.dongchi.component.BottomNavigationBar
 import ce.bhesab.dongchi.component.PlusButtonInsert
 import ce.bhesab.dongchi.model.viewGroup.Group
+import ce.bhesab.dongchi.theme.DongchiTheme
 
 @Composable
 fun ViewGroups(navController: NavController?) {
@@ -183,7 +184,9 @@ fun GroupLine(group: Group, modifier: Modifier = Modifier) {
 @Preview(showBackground = true, showSystemUi = true, locale = "fa")
 @Composable
 fun PreviewGroup() {
-    ViewGroups(null)
+    DongchiTheme {
+        ViewGroups(null)
+    }
 }
 
 

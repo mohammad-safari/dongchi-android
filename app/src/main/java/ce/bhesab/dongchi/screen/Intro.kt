@@ -20,6 +20,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavController
 import ce.bhesab.dongchi.R
 import ce.bhesab.dongchi.component.LanguageDropdown
+import ce.bhesab.dongchi.theme.DongchiTheme
 
 @Composable
 fun Intro(navController: NavController?) {
@@ -77,5 +78,7 @@ fun Intro(navController: NavController?) {
 @Preview(showBackground = true, showSystemUi = true)
 @Composable
 fun IntroPreview() {
-    Intro(null)
+    DongchiTheme {
+        Intro(null)
+    }
 }
