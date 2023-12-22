@@ -23,10 +23,39 @@
         %3$s
         داری!</string>
     <string name="recent">اخیرا</string>
+    <string name="invite_code">کد دعوت</string>
+    <string name="invite_description">با این کد می‌توانید افراد را به گروه دعوت کنید.</string>
+    <string name="invite">دعوت</string>
+    <string name="later">بعدا</string>
+    <string name="balances">حساب‌کتاب</string>
+    <string name="events">رویدادها</string>
     <string name="shareScreenTitle">سهم افراد</string>
     <string name="selectAll">انتخاب همه</string>
     <string name="confirmParticipantsShare">تایید سهم‌ها</string>
+    <string name="password">گذرواژه</string>
+    <string name="repeatPassword">تکرار گذرواژه</string>
+    <string name="alreadyNotHave">قبلا ثبت نام نکرده اید؟</string>
+    <string name="alreadyHave"> آیا قبلا حساب کاربری ایجاد کرده اید؟</string>
+    <string name="account">حساب</string>
+    <string name="logIn">ورود</string>
+    <string name="name">نام کاربری</string>
+    <string name="signUp">ثبت نام</string>
+    <string name="email">ایمیل</string>
     <string name="back">بازگشت</string>
+    <string name="create">ایجاد کردن</string>
+    <string name="code">کد دعوت</string>
+    <string name="join">ملحق شدن</string>
+    <string name="groups">گروه ها</string>
+    <string name="dashboard">داشبورد</string>
+    <string name="groupName">نام گروه</string>
 
 
+    <string name="slide_one_top_text">به دونگ‌چی خوش آمدید</string>
+    <string name="slide_one_down_text">دونگتون رو توی این محیط کاربرپسند پرداخت کنید</string>
+    <string name="slide_two_top_text">گروه بسازید</string>
+    <string name="slide_two_down_text">با ساختن گروه و ادد کردن دوستاتون از هزینه‌ها و دونگ‌ها خبردارشون کنید</string>
+    <string name="slide_three_top_text">رویداد ایجاد کنید</string>
+    <string name="slide_three_down_text">با ایجاد رویداد دونگتون رو محاسبه کنید و به دوستانتون اعلان بدید</string>
+    <string name="slide_four_top_text">حساب‌کتاب‌هارو ببینید</string>
+    <string name="slide_four_down_text">لیست دونگ‌هارو ببینید تا بتونید یر به یرشون کنید</string>
 </resources>

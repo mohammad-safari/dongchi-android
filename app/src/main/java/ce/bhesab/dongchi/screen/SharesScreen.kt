@@ -26,6 +26,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.state.ToggleableState
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
 import ce.bhesab.dongchi.R
 import ce.bhesab.dongchi.components.ParticipantShare
 import ce.bhesab.dongchi.components.RadioGroup
@@ -37,7 +38,7 @@ import co.yml.charts.ui.piechart.models.PieChartData
 
 class SharesScreen {
     @Composable
-    fun Shares(shares: List<SharesScreen.Share>) {
+    fun Shares(shares: List<SharesScreen.Share>,navController: NavController?) {
         Column(
             verticalArrangement = Arrangement.Center,
             modifier = Modifier
@@ -52,7 +53,7 @@ class SharesScreen {
 
             LazyColumn {
                 item() {
-                    sharesListTopRow()
+                    SharesListTopRow()
                 }
                 items(shares) { share ->
                     ParticipantShare(share)
@@ -63,7 +64,7 @@ class SharesScreen {
                 }
             }
             Spacer(modifier = Modifier.weight(1f))
-            sharesActionButton()
+            SharesActionButton()
         }
     }
 
@@ -95,7 +96,7 @@ class SharesScreen {
     }
 
     @Composable
-    private fun sharesListTopRow() {
+    private fun SharesListTopRow() {
         Row(
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.Center
@@ -125,7 +126,7 @@ class SharesScreen {
     }
 
     @Composable
-    private fun sharesActionButton() {
+    private fun SharesActionButton() {
         Row() {
             Button(
                 onClick = { /* Handle button click */ },
@@ -160,7 +161,8 @@ class SharesScreen {
                     Share("امیر", 0.3f, Color.Red),
                     Share("حسین", 0f, Color.Yellow),
                     Share("سروناز", 0.2f, Color.Green)
-                )
+                ),
+                null
             )
         }
     }
