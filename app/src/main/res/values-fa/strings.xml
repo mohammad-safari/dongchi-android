@@ -58,4 +58,5 @@
     <string name="slide_three_down_text">با ایجاد رویداد دونگتون رو محاسبه کنید و به دوستانتون اعلان بدید</string>
     <string name="slide_four_top_text">حساب‌کتاب‌هارو ببینید</string>
     <string name="slide_four_down_text">لیست دونگ‌هارو ببینید تا بتونید یر به یرشون کنید</string>
+    <string name="skip">رد شو</string>
 </resources>

@@ -28,7 +28,7 @@ val localeMap = mapOf("en" to "english", "fa" to "فارسی")
 
 @Composable
 fun LanguageDropdown(
-    selectedLanguage: String = Locale.current.language, onLanguageSelected: (String) -> Unit = {
+    selectedLanguage: String = Locale.current.language, onLanguageSelected: (String) -> Unit = {selectedLanguage->
         val appLocale: LocaleListCompat = LocaleListCompat.forLanguageTags(selectedLanguage)
         AppCompatDelegate.setApplicationLocales(appLocale)
     }
