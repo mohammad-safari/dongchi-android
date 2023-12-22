@@ -41,4 +41,5 @@
     <string name="slide_three_down_text">Create Events to calculate Balances and Notify your Friends</string>
     <string name="slide_four_top_text">Watch Balances</string>
     <string name="slide_four_down_text">See the list of balances and try to settle them up!</string>
+    <string name="skip">skip</string>
 </resources>

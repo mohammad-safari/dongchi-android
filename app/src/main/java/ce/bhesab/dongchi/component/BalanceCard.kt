@@ -1,6 +1,5 @@
-package ce.bhesab.dongchi.components
+package ce.bhesab.dongchi.component
 
-import android.widget.TextView
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -26,7 +25,6 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import ce.bhesab.dongchi.model.group.Balance
-import ce.bhesab.dongchi.model.group.GroupScreenState
 
 @Composable
 fun BalanceCard(balance: Balance){

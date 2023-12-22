@@ -28,8 +28,8 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import ce.bhesab.dongchi.R
-import ce.bhesab.dongchi.components.ParticipantShare
-import ce.bhesab.dongchi.components.RadioGroup
+import ce.bhesab.dongchi.component.ParticipantShare
+import ce.bhesab.dongchi.component.RadioGroup
 import ce.bhesab.dongchi.theme.DongchiTheme
 import co.yml.charts.common.model.PlotType
 import co.yml.charts.ui.piechart.charts.DonutPieChart

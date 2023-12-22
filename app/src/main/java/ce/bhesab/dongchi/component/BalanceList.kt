@@ -1,4 +1,4 @@
-package ce.bhesab.dongchi.components
+package ce.bhesab.dongchi.component
 
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.height
@@ -9,7 +9,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import ce.bhesab.dongchi.model.group.Balance
-import ce.bhesab.dongchi.model.group.Event
 
 @Composable
 fun BalanceList(balanceList: List<Balance>){
