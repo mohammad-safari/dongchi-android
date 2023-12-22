@@ -22,8 +22,8 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.navigation.NavController
-import ce.bhesab.dongchi.components.BalanceList
-import ce.bhesab.dongchi.components.EventList
+import ce.bhesab.dongchi.component.BalanceList
+import ce.bhesab.dongchi.component.EventList
 import ce.bhesab.dongchi.model.group.Balance
 import ce.bhesab.dongchi.model.group.Event
 import ce.bhesab.dongchi.model.group.Expense
@@ -31,8 +31,8 @@ import ce.bhesab.dongchi.model.group.Group
 import ce.bhesab.dongchi.model.group.GroupScreenState
 import ce.bhesab.dongchi.model.group.Transaction
 import ce.bhesab.dongchi.R
-import ce.bhesab.dongchi.components.BottomNavigationBar
-import ce.bhesab.dongchi.components.PlusButtonInsert
+import ce.bhesab.dongchi.component.BottomNavigationBar
+import ce.bhesab.dongchi.component.PlusButtonInsert
 
 @Composable
 fun GroupScreen(group: Group, navController: NavController?, modifier: Modifier = Modifier) {

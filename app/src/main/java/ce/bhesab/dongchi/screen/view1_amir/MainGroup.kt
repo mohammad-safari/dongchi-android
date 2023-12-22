@@ -16,7 +16,6 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Code
-import androidx.compose.material.icons.filled.Groups
 import androidx.compose.material3.Button
 import androidx.compose.material3.Card
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -43,8 +42,8 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import ce.bhesab.dongchi.R
-import ce.bhesab.dongchi.components.BottomNavigationBar
-import ce.bhesab.dongchi.components.PlusButtonInsert
+import ce.bhesab.dongchi.component.BottomNavigationBar
+import ce.bhesab.dongchi.component.PlusButtonInsert
 import ce.bhesab.dongchi.model.viewGroup.Group
 
 @Composable

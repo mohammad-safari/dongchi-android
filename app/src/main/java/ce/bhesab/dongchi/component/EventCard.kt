@@ -1,4 +1,4 @@
-package ce.bhesab.dongchi.components
+package ce.bhesab.dongchi.component
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
@@ -36,5 +36,5 @@ fun EventCard(event: Event){
 @Preview(showBackground = true)
 @Composable
 fun EventPreview() {
-    ce.bhesab.dongchi.components.EventCard(event = Transaction(1, 22.1, "Mohammad", "Amirhossein"))
+    ce.bhesab.dongchi.component.EventCard(event = Transaction(1, 22.1, "Mohammad", "Amirhossein"))
 }
