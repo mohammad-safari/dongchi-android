@@ -3,6 +3,7 @@ package ce.bhesab.dongchi
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
@@ -26,7 +27,7 @@ import ce.bhesab.dongchi.screen.view1_amir.ViewGroups
 import ce.bhesab.dongchi.screen.SignUpScreen
 import ce.bhesab.dongchi.theme.DongchiTheme
 
-class MainActivity : ComponentActivity() {
+class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
