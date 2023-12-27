@@ -84,7 +84,7 @@ fun GroupScreen(group: Group, navController: NavController?, modifier: Modifier 
                 .padding(bottom = 80.dp),
             navController
         ) {
-            //onClick code
+            navController?.navigate("share")
         }
 
         BottomNavigationBar(

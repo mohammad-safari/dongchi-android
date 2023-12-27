@@ -22,6 +22,7 @@ import ce.bhesab.dongchi.model.group.Transaction
 import ce.bhesab.dongchi.screen.DashboardScreen
 import ce.bhesab.dongchi.screen.GroupScreen
 import ce.bhesab.dongchi.screen.Intro
+import ce.bhesab.dongchi.screen.LoginScreen
 import ce.bhesab.dongchi.screen.SharesScreen
 import ce.bhesab.dongchi.screen.view1_amir.ViewGroups
 import ce.bhesab.dongchi.screen.SignUpScreen
@@ -58,6 +59,9 @@ fun Root(modifier: Modifier = Modifier) {
         }
         composable("signup"){
             SignUpScreen(navController = navController)
+        }
+        composable("login"){
+            LoginScreen(navController = navController)
         }
         composable("groups"){
             ViewGroups(navController = navController)

@@ -139,7 +139,7 @@ import ce.bhesab.dongchi.R
                 Text(
                     stringResource(R.string.logIn),
                     color = MaterialTheme.colorScheme.primary,
-                    modifier = Modifier.clickable { /* Handle navigation to login screen */ }
+                    modifier = Modifier.clickable { navController?.navigate("login") }
                 )
             }
         }
