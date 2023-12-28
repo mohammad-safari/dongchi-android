@@ -60,7 +60,7 @@ fun BottomNavigationBar(navController: NavController?, modifier: Modifier = Modi
         BottomNavigationItem(
             icon = Icons.Outlined.AccountBox,
             text =  stringResource(R.string.account),
-            onClick = {navController?.navigate("group")}
+            onClick = {/* TODO */}
         )
     }
 }

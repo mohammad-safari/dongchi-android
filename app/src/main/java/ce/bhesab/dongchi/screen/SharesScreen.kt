@@ -64,7 +64,7 @@ class SharesScreen {
                 }
             }
             Spacer(modifier = Modifier.weight(1f))
-            SharesActionButton()
+            SharesActionButton(navController = navController)
         }
     }
 
@@ -126,10 +126,10 @@ class SharesScreen {
     }
 
     @Composable
-    private fun SharesActionButton() {
+    private fun SharesActionButton(navController: NavController?) {
         Row() {
             Button(
-                onClick = { /* Handle button click */ },
+                onClick = { navController?.navigate("group") },
                 modifier = Modifier
                     .weight(1f)
                     .padding(10.dp)
@@ -137,7 +137,7 @@ class SharesScreen {
                 Text(text = stringResource(R.string.confirmParticipantsShare))
             }
             OutlinedButton(
-                onClick = { /* Handle button click */ },
+                onClick = { navController?.navigate("group") },
                 modifier = Modifier
                     .weight(1f)
                     .padding(10.dp)
