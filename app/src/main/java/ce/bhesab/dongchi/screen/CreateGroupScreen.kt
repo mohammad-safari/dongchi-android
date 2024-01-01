@@ -32,6 +32,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import ce.bhesab.dongchi.R
+import ce.bhesab.dongchi.theme.DongchiTheme
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -96,5 +97,7 @@ fun CreateGroupScreen() {
 @Preview(showSystemUi = true, locale = "fa")
 @Composable
 fun Salah() {
-    CreateGroupScreen()
+    DongchiTheme {
+        CreateGroupScreen()
+    }
 }

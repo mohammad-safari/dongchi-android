@@ -1,7 +1,6 @@
 package ce.bhesab.dongchi
 
 import android.os.Bundle
-import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.foundation.layout.fillMaxSize
@@ -24,76 +23,86 @@ import ce.bhesab.dongchi.screen.GroupScreen
 import ce.bhesab.dongchi.screen.Intro
 import ce.bhesab.dongchi.screen.LoginScreen
 import ce.bhesab.dongchi.screen.SharesScreen
-import ce.bhesab.dongchi.screen.view1_amir.ViewGroups
 import ce.bhesab.dongchi.screen.SignUpScreen
+import ce.bhesab.dongchi.screen.view1_amir.ViewGroups
 import ce.bhesab.dongchi.theme.DongchiTheme
+import ce.bhesab.dongchi.viewmodel.BaseViewModel
 
-class MainActivity : AppCompatActivity() {
+class MainActivity() : AppCompatActivity() {
+    private val baseViewModel = BaseViewModel(this)
+
+    init {
+        baseViewModel.checkLogin()
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
             DongchiTheme {
-                // A surface container using the 'background' color from the theme
                 Surface(
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    Root()
+                    AppContent()
                 }
             }
         }
     }
-}
 
-@Composable
-fun Root(modifier: Modifier = Modifier) {
-    val navController = rememberNavController()
-    val startDestination = "intro"
-    NavHost(navController = navController, startDestination = startDestination){
-        composable("intro"){
-            Intro(navController)
-        }
-        composable("dashboard"){
-            val dashboardScreen = DashboardScreen()
-            dashboardScreen.Dashboard(navController = navController, overview = dashboardScreen.mockOverview)
-        }
-        composable("signup"){
-            SignUpScreen(navController = navController)
-        }
-        composable("login"){
-            LoginScreen(navController = navController)
-        }
-        composable("groups"){
-            ViewGroups(navController = navController)
-        }
-        composable("group"){
-            val eventList = listOf<Event>(
-                Transaction(3, 22.2, "Sarvenaz", "Mohammad"),
-                Expense(4, 30.0, "Amirhossein", "Cake")
-            )
-            val balanceList = listOf<Balance>(
-                Balance("Sarvenaz", mapOf("Amirhossein" to 30.0)),
-                Balance("Mohammad", mapOf("Amirhossein" to 20.0))
-            )
-            val group = Group(eventList, balanceList)
-            GroupScreen( group ,navController = navController)
-        }
-        composable("share"){
-            val share = SharesScreen()
-            share.Shares(listOf(
-                SharesScreen.Share("محمد", 0.5f, Color.Cyan),
-                SharesScreen.Share("امیر", 0.3f, Color.Red),
-                SharesScreen.Share("حسین", 0f, Color.Yellow),
-                SharesScreen.Share("سروناز", 0.2f, Color.Green)
-            ),navController = navController)
+
+    @Composable
+    fun AppContent() {
+        val startDestination = if (baseViewModel.isLogin.value) "dashboard" else "intro"
+        val navController = rememberNavController()
+
+        NavHost(navController = navController, startDestination = startDestination) {
+            composable("intro") {
+                Intro(navController)
+            }
+            composable("dashboard") {
+                val dashboardScreen = DashboardScreen()
+                dashboardScreen.Dashboard(
+                    navController = navController,
+                    overview = dashboardScreen.mockOverview
+                )
+            }
+            composable("signup") {
+                SignUpScreen(navController = navController)
+            }
+            composable("groups") {
+                ViewGroups(navController = navController)
+            }
+            composable("group") {
+                val eventList = listOf<Event>(
+                    Transaction(3, 22.2, "Sarvenaz", "Mohammad"),
+                    Expense(4, 30.0, "Amirhossein", "Cake")
+                )
+                val balanceList = listOf<Balance>(
+                    Balance("Sarvenaz", mapOf("Amirhossein" to 30.0)),
+                    Balance("Mohammad", mapOf("Amirhossein" to 20.0))
+                )
+                val group = Group(eventList, balanceList)
+                GroupScreen(group, navController = navController)
+            }
+            composable("share") {
+                val share = SharesScreen()
+                share.Shares(
+                    listOf(
+                        SharesScreen.Share("محمد", 0.5f, Color.Cyan),
+                        SharesScreen.Share("امیر", 0.3f, Color.Red),
+                        SharesScreen.Share("حسین", 0f, Color.Yellow),
+                        SharesScreen.Share("سروناز", 0.2f, Color.Green)
+                    ), navController = navController
+                )
+            }
         }
     }
-}
 
-@Preview(showBackground = true, showSystemUi = true, locale = "fa")
-@Composable
-fun GreetingPreview() {
-    DongchiTheme {
-        Root()
+    @Preview(showBackground = true, showSystemUi = true, locale = "fa")
+    @Composable
+    fun GreetingPreview() {
+        DongchiTheme {
+            AppContent()
+        }
     }
 }
