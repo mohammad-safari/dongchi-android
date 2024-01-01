@@ -21,6 +21,7 @@ import ce.bhesab.dongchi.model.group.Transaction
 import ce.bhesab.dongchi.screen.DashboardScreen
 import ce.bhesab.dongchi.screen.GroupScreen
 import ce.bhesab.dongchi.screen.Intro
+import ce.bhesab.dongchi.screen.LoginScreen
 import ce.bhesab.dongchi.screen.SharesScreen
 import ce.bhesab.dongchi.screen.SignUpScreen
 import ce.bhesab.dongchi.screen.view1_amir.ViewGroups
@@ -47,6 +48,7 @@ class MainActivity() : AppCompatActivity() {
             }
         }
     }
+
 
     @Composable
     fun AppContent() {

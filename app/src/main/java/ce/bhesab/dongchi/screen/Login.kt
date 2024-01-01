@@ -107,7 +107,7 @@ fun LoginScreen(navController: NavController?) {
             Text(
                 stringResource(R.string.signUp),
                 color = MaterialTheme.colorScheme.primary,
-                modifier = Modifier.clickable { /* Handle navigation to login screen */ }
+                modifier = Modifier.clickable { navController?.navigate("signup") }
             )
         }
     }

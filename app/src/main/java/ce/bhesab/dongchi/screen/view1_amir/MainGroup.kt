@@ -2,6 +2,7 @@ package ce.bhesab.dongchi.screen.view1_amir
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -78,7 +79,8 @@ fun GroupList(groups: List<Group>, modifier: Modifier = Modifier, navController:
             items(groups) { group ->
                 GroupLine(
                     group = group,
-                    modifier = modifier.padding(8.dp)
+                    modifier = modifier.padding(8.dp),
+                    navController = navController
                 )
             }
         }
@@ -147,8 +149,8 @@ fun GroupList(groups: List<Group>, modifier: Modifier = Modifier, navController:
 
 
 @Composable
-fun GroupLine(group: Group, modifier: Modifier = Modifier) {
-    Card(modifier = modifier) {
+fun GroupLine(group: Group, modifier: Modifier = Modifier, navController: NavController? = null) {
+    Card(modifier = modifier.clickable { navController?.navigate("group") }) {
         Row(
             modifier = Modifier
                 .background(Color.LightGray)
