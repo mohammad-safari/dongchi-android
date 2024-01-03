@@ -22,6 +22,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
@@ -33,7 +34,10 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import ce.bhesab.dongchi.R
+import ce.bhesab.dongchi.api.RetrofitClient
+import ce.bhesab.dongchi.api.user.model.LoginRequest
 import ce.bhesab.dongchi.theme.DongchiTheme
+import kotlinx.coroutines.launch
 
 
 @Composable
@@ -41,6 +45,7 @@ fun LoginScreen(navController: NavController?) {
     var email by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
     val isPasswordVisible by remember { mutableStateOf(false) }
+    val coroutineScope = rememberCoroutineScope()
 
     Column(
         modifier = Modifier
@@ -89,7 +94,17 @@ fun LoginScreen(navController: NavController?) {
         Spacer(modifier = Modifier.height(16.dp))
 
         Button(
-            onClick = { navController?.navigate("dashboard") },
+            onClick = {
+                coroutineScope.launch {
+                    val response = RetrofitClient.userApi.login(LoginRequest( "" , email, "", password))
+
+                    if (response.isSuccessful) {
+                        navController?.navigate("dashboard")
+                    } else {
+                        response.errorBody()
+                    }
+                }
+            },
             modifier = Modifier
                 .fillMaxWidth()
                 .height(50.dp)

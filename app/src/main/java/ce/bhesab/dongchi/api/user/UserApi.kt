@@ -19,5 +19,5 @@ public interface UserApi {
     suspend fun login(@Body loginRequest: LoginRequest): Response<LoginResponse>
 
     @GET("/user/profile")
-    suspend fun login(@Header("Authorization") authorizationHeader: String): Response<Any>
+    suspend fun profile(@Header("Authorization") authorizationHeader: String): Response<Any>
 }

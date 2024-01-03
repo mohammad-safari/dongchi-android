@@ -42,4 +42,5 @@
     <string name="slide_four_top_text">Watch Balances</string>
     <string name="slide_four_down_text">See the list of balances and try to settle them up!</string>
     <string name="skip">skip</string>
+    <string name="phone_number">phone number</string>
 </resources>
