@@ -4,7 +4,6 @@ import ce.bhesab.dongchi.api.user.model.LoginRequest
 import ce.bhesab.dongchi.api.user.model.LoginResponse
 import ce.bhesab.dongchi.api.user.model.SignupRequest
 import ce.bhesab.dongchi.api.user.model.SignupResponse
-import retrofit2.Call
 import retrofit2.Response
 import retrofit2.http.Body
 import retrofit2.http.GET
