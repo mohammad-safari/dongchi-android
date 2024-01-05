@@ -79,30 +79,54 @@ class SharesScreen {
                 }
                 items(shares.value) { share ->
                     ParticipantShare(share,
+//                        share.person, shares,
                         step = 100,
                         range = 0f..100f,
                         checked = share.percentage > 0,
                         onCheck = {
-                            if (share.percentage > 0)
-                                shares.value =
-                                    shares.value.map {
-                                        if (share.person == it.person && it.percentage > 0) share.copy(
-                                            percentage = 0f
-                                        ) else it
-                                    }
-                            else
-                                shares.value =
-                                    shares.value.map {
-                                        if (it.person == share.person || it.percentage > 0) it.copy(
-                                            percentage = 100f / members.size
-                                        ) else it
-                                    }
+                            if (share.percentage > 0) {// make unchecked by setting zero
+//                                share.percentage = 0f
+                                val chosen =
+                                    shares.value.filter { it.percentage > 0 }.map { it.person }
+                                shares.value = shares.value.map {
+                                    if (share.person == it.person && it.percentage > 0 || it.percentage == 0f) it.copy(
+                                        percentage = 0f
+                                    ) else it.copy(
+                                        percentage = (100f / (chosen.size - 1))
+                                    )
+                                }
+                            } else {
+                                val chosen =
+                                    shares.value.filter { it.percentage > 0 }.map { it.person }
+//                                share.percentage = (100f / chosen.size)
+                                shares.value = shares.value.map {
+                                    if (it.person == share.person || it.percentage > 0) it.copy(
+                                        percentage = (100f / (chosen.size + 1))
+                                    ) else it.copy(
+                                        percentage = 0f
+                                    )
+                                }
+                            }
 
                         },
-                        onSlide = {}) {
-                        shares.value =
-                            shares.value.map { if (share.person == it.person) share.copy(percentage = it.percentage) else it }
-                    }
+                        onSlide = {
+//                            share.percentage = it
+                            var prev = share.percentage
+                            shares.value = shares.value.map {
+                                if (share.person == it.person) {
+                                    share.copy(percentage = it.percentage)
+                                } else it
+                            }
+                        },
+                        onChange = {
+//                            share.percentage = it.toFloat()
+                            shares.value =
+                                shares.value.map {
+                                    if (share.person == it.person) share.copy(
+                                        percentage = it.percentage
+                                    ) else it
+                                }
+                        })
                 }
                 item() {
                     SharesOverview(shares)
@@ -112,6 +136,7 @@ class SharesScreen {
             Spacer(modifier = Modifier.weight(1f))
             SharesActionButton(navController = navController)
         }
+
     }
 
     @Composable
@@ -231,7 +256,7 @@ class SharesScreen {
     }
 
 
-    data class Share(val person: String, val percentage: Float, val color: Color)
+    data class Share(val person: String, var percentage: Float, val color: Color)
 
 
     @Preview(showSystemUi = true, locale = "fa")
