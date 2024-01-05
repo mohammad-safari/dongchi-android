@@ -1,4 +1,4 @@
-package ce.bhesab.dongchi.api.group.model
+package ce.bhesab.dongchi.api.user.model
 
 import java.math.BigDecimal
 
