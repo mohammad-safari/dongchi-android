@@ -5,7 +5,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import ce.bhesab.dongchi.api.group.model.GroupBalanceRetrievalResponse
-import ce.bhesab.dongchi.dongchiApi.endpoint.group.dto.GroupEventRetrievalResponse
+import ce.bhesab.dongchi.api.group.model.GroupEventRetrievalResponse
 import ce.bhesab.dongchi.model.group.Balance
 import ce.bhesab.dongchi.model.group.Event
 import ce.bhesab.dongchi.model.group.Expense

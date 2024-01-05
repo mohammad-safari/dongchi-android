@@ -2,7 +2,7 @@ package ce.bhesab.dongchi.repository
 
 import ce.bhesab.dongchi.api.RetrofitClient
 import ce.bhesab.dongchi.api.group.model.GroupBalanceRetrievalResponse
-import ce.bhesab.dongchi.dongchiApi.endpoint.group.dto.GroupEventRetrievalResponse
+import ce.bhesab.dongchi.api.group.model.GroupEventRetrievalResponse
 import retrofit2.Response
 
 class GroupRepository {

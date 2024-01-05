@@ -1,7 +1,7 @@
 package ce.bhesab.dongchi.api.group
 
 import ce.bhesab.dongchi.api.group.model.GroupBalanceRetrievalResponse
-import ce.bhesab.dongchi.dongchiApi.endpoint.group.dto.GroupEventRetrievalResponse
+import ce.bhesab.dongchi.api.group.model.GroupEventRetrievalResponse
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Header
