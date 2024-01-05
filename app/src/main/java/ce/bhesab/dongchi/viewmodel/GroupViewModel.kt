@@ -32,10 +32,10 @@ class GroupViewModel : ViewModel() {
             val response = groupRepository.fetchBalances(groupId, authorizationHeader)
             if(response == null){
                 _error.value = true
-//                _balanceList.value = listOf<Balance>(
-//                    Balance("Sarvenaz", mapOf("Amirhossein" to 30)),
-//                    Balance("Mohammad", mapOf("Amirhossein" to 20))
-//                )
+                _balanceList.value = listOf<Balance>(
+                    Balance("Sarvenaz", mapOf("Amirhossein" to 30.0)),
+                    Balance("Mohammad", mapOf("Amirhossein" to 20.0))
+                )
             }
             else {
                 _balanceList.value = convertBalances(response)
@@ -50,10 +50,10 @@ class GroupViewModel : ViewModel() {
             val response = groupRepository.fetchEvents(groupId, authorizationHeader)
             if(response == null){
                 _error.value = true
-//                _eventList.value = listOf<Event>(
-//                    Transaction(3, 22.2, "Sarvenaz", "Mohammad"),
-//                    Expense(4, 30.0, "Amirhossein", "Cake")
-//                )
+                _eventList.value = listOf<Event>(
+                    Transaction(22.2, "Sarvenaz", "Mohammad"),
+                    Expense(30.0, "Amirhossein", "Cake")
+                )
             }
             else {
                 _eventList.value = convertEvents(response)
