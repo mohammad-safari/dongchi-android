@@ -11,26 +11,40 @@ import androidx.compose.material3.SliderDefaults
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.MutableState
+import androidx.compose.runtime.mutableFloatStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.focus.onFocusChanged
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import ce.bhesab.dongchi.screen.SharesScreen
+import java.math.BigDecimal
 
 @Composable
-fun ParticipantShare(share: SharesScreen.Share, modifier: Modifier = Modifier) {
-    var sliderPosition by remember { mutableStateOf(share.percentage) }
-    var inputText by remember { mutableStateOf((share.percentage * 100).toInt().toString()) }
+fun ParticipantShare(
+    share: SharesScreen.Share,
+    inputText: MutableState<String> = remember { mutableStateOf("") },
+    step: Int = 100,
+    range: ClosedFloatingPointRange<Float> = 0f..100f,
+    checked: Boolean = true,
+    onCheck: (check: Boolean) -> Unit = {},
+    onSlide: (Float) -> Unit = {},
+    onChange: (share: String) -> Unit = {},
+) {
+    var sliderPosition = remember { mutableFloatStateOf(share.percentage) }
 
+    LaunchedEffect(sliderPosition.value) {
+        inputText.value = BigDecimal(share.percentage.toDouble()).toString()
+    }
     Row(verticalAlignment = Alignment.CenterVertically) {
         Checkbox(
-            checked = share.percentage > 0, onCheckedChange = { /*TODO*/ },
+            checked = checked, onCheckedChange = { onCheck(it) },
             colors = CheckboxDefaults.colors(share.color),
             modifier = Modifier.weight(1f)
         )
@@ -42,24 +56,40 @@ fun ParticipantShare(share: SharesScreen.Share, modifier: Modifier = Modifier) {
         )
 
         Slider(
-            value = sliderPosition,
-            onValueChange = { sliderPosition = it },
+            value = sliderPosition.value,
+            onValueChange = {
+                sliderPosition.value = it
+                onSlide(it)
+            },
             colors = SliderDefaults.colors(share.color, share.color),
+            enabled = checked,
+            valueRange = range,
+            steps = step,
+            onValueChangeFinished = null,
             modifier = Modifier
                 .padding(horizontal = 8.dp)
                 .weight(4f)
         )
 
         TextField(
-            value = inputText,
-            onValueChange = { inputText = it },
+            value = inputText.value,
+            onValueChange = {
+                inputText.value = it
+            },
+            enabled = checked,
             singleLine = true,
             keyboardOptions = KeyboardOptions(
                 keyboardType = KeyboardType.Number
             ),
             modifier = Modifier
-                .weight(1f)
+                .weight(1.5f)
                 .padding(1.dp)
+                .onFocusChanged {
+                    if (it.isFocused)
+                        inputText.value = share.percentage.toString()
+                    else
+                        onChange(inputText.value)
+                }
         )
     }
 }
@@ -67,5 +97,5 @@ fun ParticipantShare(share: SharesScreen.Share, modifier: Modifier = Modifier) {
 @Preview
 @Composable
 fun ParticipantSharePreview() {
-    ParticipantShare(share = SharesScreen.Share("test", 0.12f, Color.Red))
+    ParticipantShare(SharesScreen.Share("test", 12f, Color.Red))
 }

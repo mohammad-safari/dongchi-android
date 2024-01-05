@@ -60,4 +60,7 @@
     <string name="slide_four_top_text">حساب‌کتاب‌هارو ببینید</string>
     <string name="slide_four_down_text">لیست دونگ‌هارو ببینید تا بتونید یر به یرشون کنید</string>
     <string name="skip">رد شو</string>
+    <string name="shares">سهم</string>
+    <string name="price">قیمت</string>
+    <string name="by">براساس:</string>
 </resources>

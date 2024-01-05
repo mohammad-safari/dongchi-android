@@ -43,4 +43,7 @@
     <string name="slide_four_down_text">See the list of balances and try to settle them up!</string>
     <string name="skip">skip</string>
     <string name="phone_number">phone number</string>
+    <string name="shares">share</string>
+    <string name="price">price</string>
+    <string name="by">by:</string>
 </resources>

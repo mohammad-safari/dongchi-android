@@ -1,11 +1,13 @@
 package ce.bhesab.dongchi.repository
 
 import ce.bhesab.dongchi.api.RetrofitClient
+import ce.bhesab.dongchi.api.group.model.EventPostRequest
 import ce.bhesab.dongchi.api.group.model.GroupBalanceRetrievalResponse
 import ce.bhesab.dongchi.api.group.model.GroupEventRetrievalResponse
 import retrofit2.Response
 
 class GroupRepository {
+    private val groupApi = RetrofitClient.groupApi
 
     suspend fun fetchBalances(groupId: String, authorizationHeader: String): GroupBalanceRetrievalResponse?{
         getBalancesList(groupId, authorizationHeader).let {
@@ -54,4 +56,7 @@ class GroupRepository {
         }
     }
 
+    suspend fun postGroupEvent(authToken: String, postEventRequest: EventPostRequest) {
+        groupApi.postGroupEvent(authToken, postEventRequest)
+    }
 }

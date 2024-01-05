@@ -11,11 +11,12 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import androidx.navigation.navArgument
 import ce.bhesab.dongchi.model.group.Balance
 import ce.bhesab.dongchi.model.group.Event
 import ce.bhesab.dongchi.model.group.Expense
@@ -52,7 +53,6 @@ class MainActivity() : AppCompatActivity() {
         }
     }
 
-
     @Composable
     fun AppContent() {
         val startDestination = if (baseViewModel.isLogin.value) "dashboard" else "intro"
@@ -81,16 +81,14 @@ class MainActivity() : AppCompatActivity() {
             composable("group") {
                 GroupScreen(navController = navController)
             }
-            composable("share") {
+            composable(
+                "share/{groupId}",
+                arguments = listOf(navArgument("groupId") { type = NavType.StringType })
+            ) { backStackEntry ->
                 val share = SharesScreen()
-                share.Shares(
-                    listOf(
-                        SharesScreen.Share("محمد", 0.5f, Color.Cyan),
-                        SharesScreen.Share("امیر", 0.3f, Color.Red),
-                        SharesScreen.Share("حسین", 0f, Color.Yellow),
-                        SharesScreen.Share("سروناز", 0.2f, Color.Green)
-                    ), navController = navController
-                )
+                val groupId = backStackEntry.arguments?.getString("groupId")
+                if (groupId != null)
+                    share.SharesSetting(groupId, navController = navController)
             }
         }
     }
