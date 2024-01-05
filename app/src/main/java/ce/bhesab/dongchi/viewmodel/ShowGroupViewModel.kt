@@ -6,6 +6,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import ce.bhesab.dongchi.api.RetrofitClient
+import ce.bhesab.dongchi.api.user.model.Group
 import ce.bhesab.dongchi.api.user.model.GroupResponse
 import ce.bhesab.dongchi.repository.UserSettingsRepository
 import co.yml.charts.common.extensions.isNotNull
@@ -20,10 +21,10 @@ class ShowGroupViewModel(
     private val userSettingsRepository = UserSettingsRepository(context)
 
 
-    private val _groupData = mutableStateOf<GroupResponse?>(null)
+    private val _groupData = mutableStateOf<List<Group>?>(null)
     val groupData = _groupData
 
-    suspend fun getGroups() {
+    fun getGroups() {
         viewModelScope.launch {
             try {
                 val token = userSettingsRepository.getToken().getOrNull()

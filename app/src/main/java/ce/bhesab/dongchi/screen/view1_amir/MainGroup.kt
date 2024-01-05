@@ -29,6 +29,7 @@ import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.material3.rememberModalBottomSheetState
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -40,6 +41,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.asImageBitmap
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
@@ -50,9 +52,21 @@ import ce.bhesab.dongchi.component.PlusButtonInsert
 import ce.bhesab.dongchi.viewmodel.ShowGroupViewModel
 
 @Composable
-fun ViewGroups(navController: NavController?,context: Context) {
+fun ViewGroups(navController: NavController?, context: Context) {
     val showGroupViewModel = remember { ShowGroupViewModel(context) }
-    showGroupViewModel.groupData.value?.let { GroupList(groups = it.groups, navController = navController) }
+    showGroupViewModel.getGroups()
+    val showGroupList = remember { mutableStateOf(false) }
+    LaunchedEffect(showGroupViewModel.groupData.value) {
+        showGroupList.value = showGroupViewModel.groupData.value != null
+    }
+    if (showGroupList.value) {
+        showGroupViewModel.groupData.value?.let {
+            GroupList(
+                groups = it,
+                navController = navController
+            )
+        }
+    }
 }
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -63,7 +77,7 @@ fun GroupList(groups: List<Group>, modifier: Modifier = Modifier, navController:
             .fillMaxSize()
             .background(MaterialTheme.colorScheme.background),
 
-    ) {
+        ) {
 
         var nameGroup by remember {
             mutableStateOf("")
@@ -151,8 +165,9 @@ fun GroupList(groups: List<Group>, modifier: Modifier = Modifier, navController:
 
 @Composable
 fun GroupLine(group: Group, modifier: Modifier = Modifier) {
-    val decodedBytes = Base64.decode(group.groupImage, Base64.DEFAULT)
-    val photo = BitmapFactory.decodeByteArray(decodedBytes, 0, decodedBytes.size)
+    val decodedBytes =
+        if (group.groupImage != null) Base64.decode(group.groupImage, Base64.DEFAULT) else null
+    val photo = decodedBytes?.let { BitmapFactory.decodeByteArray(decodedBytes, 0, it.size) }
 
     Card(modifier = modifier.background(Color.White)) {
         Row(
@@ -161,14 +176,26 @@ fun GroupLine(group: Group, modifier: Modifier = Modifier) {
                 .fillMaxWidth()
                 .clip(MaterialTheme.shapes.medium)
         ) {
-            Image(
-                bitmap = photo.asImageBitmap(),
-                contentDescription = group.description,
-                modifier = Modifier
-                    .size(width = 100.dp, height = 100.dp)
-                    .clip(MaterialTheme.shapes.medium),
-                contentScale = ContentScale.Crop
-            )
+            if (photo != null) {
+                Image(
+                    bitmap = photo.asImageBitmap(),
+                    contentDescription = group.description,
+                    modifier = Modifier
+                        .size(width = 100.dp, height = 100.dp)
+                        .clip(MaterialTheme.shapes.medium),
+                    contentScale = ContentScale.Crop
+                )
+            }
+            else{
+                Image(
+                    painter = painterResource(R.drawable.logo),
+                    contentDescription = group.description,
+                    modifier = Modifier
+                        .size(width = 100.dp, height = 100.dp)
+                        .clip(MaterialTheme.shapes.medium),
+                    contentScale = ContentScale.Crop
+                )
+            }
             Column {
                 Text(
                     text = group.groupName,
