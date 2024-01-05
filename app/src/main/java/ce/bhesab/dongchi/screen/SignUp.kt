@@ -1,5 +1,6 @@
 package ce.bhesab.dongchi.screen
 
+import android.content.Context
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -31,26 +32,21 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import ce.bhesab.dongchi.R
-import ce.bhesab.dongchi.theme.DongchiTheme
-import androidx.compose.runtime.rememberCoroutineScope
-import ce.bhesab.dongchi.api.RetrofitClient
-import ce.bhesab.dongchi.api.user.model.SignupRequest
-import kotlinx.coroutines.launch
+import ce.bhesab.dongchi.viewmodel.SignUpViewModel
 
 @Composable
-fun SignUpScreen(navController: NavController?) {
+fun SignUpScreen(navController: NavController?, context: Context) {
     var name by remember { mutableStateOf("") }
     var email by remember { mutableStateOf("") }
     var phoneNumber by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
     var repeatPassword by remember { mutableStateOf("") }
     val isPasswordVisible by remember { mutableStateOf(false) }
-    val coroutineScope = rememberCoroutineScope()
+    val signUpViewModel = SignUpViewModel(context)
 
     Column(
         modifier = Modifier
@@ -143,21 +139,17 @@ fun SignUpScreen(navController: NavController?) {
 
         Button(
             onClick = {
-                coroutineScope.launch {
-                    val response = RetrofitClient.userApi.signup(SignupRequest(name, email, phoneNumber, password))
-
-                    if (response.isSuccessful) {
-                        navController?.navigate("dashboard")
-                    } else {
-                        response.errorBody()
-                    }
-                }
+                signUpViewModel.signUpUser(name, email, phoneNumber, password)
             },
             modifier = Modifier
                 .fillMaxWidth()
                 .height(50.dp)
         ) {
             Text(stringResource(R.string.signUp), fontSize = 15.sp)
+        }
+
+        if (signUpViewModel.signUpSuccess.value) {
+            navController?.navigate("dashboard")
         }
 
         Spacer(modifier = Modifier.height(16.dp))
@@ -170,17 +162,17 @@ fun SignUpScreen(navController: NavController?) {
             Text(
                 stringResource(R.string.logIn),
                 color = MaterialTheme.colorScheme.primary,
-                modifier = Modifier.clickable { /* Handle navigation to login screen */ }
+                modifier = Modifier.clickable { navController?.navigate("login") }
             )
         }
     }
 }
 
-@Preview(showSystemUi = true, locale = "fa")
-@Composable
-fun Amo() {
-    DongchiTheme {
-        SignUpScreen(null)
-    }
-}
+//@Preview(showSystemUi = true, locale = "fa")
+//@Composable
+//fun Amo() {
+//    DongchiTheme {
+//        SignUpScreen(null)
+//    }
+//}
 

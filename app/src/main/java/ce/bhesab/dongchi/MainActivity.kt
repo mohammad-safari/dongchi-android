@@ -1,5 +1,6 @@
 package ce.bhesab.dongchi
 
+import android.content.Context
 import android.os.Bundle
 import androidx.activity.compose.setContent
 import androidx.appcompat.app.AppCompatActivity
@@ -67,7 +68,10 @@ class MainActivity() : AppCompatActivity() {
                 )
             }
             composable("signup") {
-                SignUpScreen(navController = navController)
+                SignUpScreen(navController = navController, context = this@MainActivity)
+            }
+            composable("login") {
+                LoginScreen(navController = navController, context = this@MainActivity)
             }
             composable("groups") {
                 ViewGroups(navController = navController)
