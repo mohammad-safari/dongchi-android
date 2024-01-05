@@ -1,5 +1,6 @@
 package ce.bhesab.dongchi.screen
 
+import android.content.Context
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -34,13 +35,15 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import ce.bhesab.dongchi.R
 import ce.bhesab.dongchi.theme.DongchiTheme
+import ce.bhesab.dongchi.viewmodel.LoginViewModel
 
 
 @Composable
-fun LoginScreen(navController: NavController?) {
+fun LoginScreen(navController: NavController?, context: Context) {
     var email by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
     val isPasswordVisible by remember { mutableStateOf(false) }
+    val loginViewModel = LoginViewModel(context)
 
     Column(
         modifier = Modifier
@@ -89,12 +92,18 @@ fun LoginScreen(navController: NavController?) {
         Spacer(modifier = Modifier.height(16.dp))
 
         Button(
-            onClick = { navController?.navigate("dashboard") },
+            onClick = {
+                loginViewModel.loginUser(email, password)
+            },
             modifier = Modifier
                 .fillMaxWidth()
                 .height(50.dp)
         ) {
             Text(stringResource(R.string.logIn))
+        }
+
+        if (loginViewModel.loginSuccess.value) {
+            navController?.navigate("dashboard")
         }
 
         Spacer(modifier = Modifier.height(16.dp))
@@ -113,10 +122,10 @@ fun LoginScreen(navController: NavController?) {
     }
 }
 
-@Preview(showSystemUi = true, locale = "fa")
-@Composable
-fun Ao() {
-    DongchiTheme {
-        LoginScreen(navController = null);
-    }
-}
+//@Preview(showSystemUi = true, locale = "fa")
+//@Composable
+//fun Ao() {
+//    DongchiTheme {
+//        LoginScreen(navController = null);
+//    }
+//}

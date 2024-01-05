@@ -25,7 +25,7 @@ class GroupRepository {
 
     private suspend fun getBalancesList(groupId: String, authorizationHeader: String): Result<GroupBalanceRetrievalResponse>{
         return try {
-            val response = RetrofitClient.groupApi.getBalances(groupId, authorizationHeader)
+            val response = RetrofitClient.groupInfoApi.getBalances(groupId, authorizationHeader)
             handleApiResponse(response)
         } catch (e: Exception){
             Result.Error(e)
@@ -34,7 +34,7 @@ class GroupRepository {
 
     private suspend fun getEventsList(groupId: String, authorizationHeader: String): Result<List<GroupEventRetrievalResponse>>{
         return try {
-            val response = RetrofitClient.groupApi.getEvents(groupId, authorizationHeader)
+            val response = RetrofitClient.groupInfoApi.getEvents(groupId, authorizationHeader)
             handleApiResponse(response)
         } catch (e: Exception){
             Result.Error(e)

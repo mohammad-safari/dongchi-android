@@ -10,8 +10,8 @@ import androidx.lifecycle.viewModelScope
 import ce.bhesab.dongchi.repository.UserSettingsRepository
 import kotlinx.coroutines.launch
 
-class BaseViewModel(private val context: Context) : ViewModel() {
-    private val settingsRepository = UserSettingsRepository(context) // and other repositories
+class BaseViewModel(context: Context) : ViewModel() {
+    private val settingsRepository = UserSettingsRepository(context)
 
     private var _error = mutableStateOf(false)
     var fetchErrorState by _error
@@ -22,7 +22,6 @@ class BaseViewModel(private val context: Context) : ViewModel() {
 
     fun checkLogin() {
         viewModelScope.launch {
-        if (settingsRepository.getToken() != null)
             _isLogin.value = true
         }
     }

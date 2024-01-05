@@ -2,7 +2,6 @@ package ce.bhesab.dongchi.screen.view1_amir
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -59,7 +58,8 @@ fun GroupList(groups: List<Group>, modifier: Modifier = Modifier, navController:
     Box(
         modifier = modifier
             .fillMaxSize()
-            .background(MaterialTheme.colorScheme.background)
+            .background(MaterialTheme.colorScheme.background),
+
     ) {
 
         var nameGroup by remember {
@@ -79,8 +79,7 @@ fun GroupList(groups: List<Group>, modifier: Modifier = Modifier, navController:
             items(groups) { group ->
                 GroupLine(
                     group = group,
-                    modifier = modifier.padding(8.dp),
-                    navController = navController
+                    modifier = modifier.padding(8.dp)
                 )
             }
         }
@@ -88,7 +87,7 @@ fun GroupList(groups: List<Group>, modifier: Modifier = Modifier, navController:
         PlusButtonInsert(
             modifier = modifier
                 .align(Alignment.BottomEnd)
-                .padding(bottom = 80.dp),
+                .padding(bottom = 92.dp, end = 10.dp),
             navController
         ) {
             isSheetOpen = true
@@ -149,12 +148,13 @@ fun GroupList(groups: List<Group>, modifier: Modifier = Modifier, navController:
 
 
 @Composable
-fun GroupLine(group: Group, modifier: Modifier = Modifier, navController: NavController? = null) {
-    Card(modifier = modifier.clickable { navController?.navigate("group") }) {
+fun GroupLine(group: Group, modifier: Modifier = Modifier) {
+    Card(modifier = modifier.background(Color.White)) {
         Row(
             modifier = Modifier
-                .background(Color.LightGray)
+                .background(MaterialTheme.colorScheme.secondary)
                 .fillMaxWidth()
+                .clip(MaterialTheme.shapes.medium)
         ) {
             Image(
                 painter = painterResource(group.imageGroupId),
@@ -168,7 +168,8 @@ fun GroupLine(group: Group, modifier: Modifier = Modifier, navController: NavCon
                 Text(
                     text = group.name,
                     modifier = Modifier.align(Alignment.CenterHorizontally),
-                    style = MaterialTheme.typography.headlineMedium
+                    style = MaterialTheme.typography.headlineMedium,
+                    color = MaterialTheme.colorScheme.onSecondary
                 )
 
                 Text(
@@ -176,7 +177,8 @@ fun GroupLine(group: Group, modifier: Modifier = Modifier, navController: NavCon
                     modifier = Modifier
                         .padding(16.dp)
                         .align(Alignment.End),
-                    style = MaterialTheme.typography.headlineSmall
+                    style = MaterialTheme.typography.headlineSmall,
+                    color = MaterialTheme.colorScheme.onSecondary
                 )
             }
         }

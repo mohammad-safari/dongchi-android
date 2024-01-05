@@ -7,7 +7,7 @@ import retrofit2.http.GET
 import retrofit2.http.Header
 import retrofit2.http.Path
 
-interface GroupApi {
+interface GroupInfoApi {
     @GET("/group/{groupId}/balances")
     suspend fun getBalances(@Path("groupId") groupId: String,
                             @Header("Authorization") authorizationHeader: String
