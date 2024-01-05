@@ -110,20 +110,20 @@ class SharesScreen {
 
                         },
                         onSlide = {
-//                            share.percentage = it
+                            val change = it
                             var prev = share.percentage
                             shares.value = shares.value.map {
                                 if (share.person == it.person) {
-                                    share.copy(percentage = it.percentage)
+                                    share.copy(percentage = change)
                                 } else it
                             }
                         },
                         onChange = {
-//                            share.percentage = it.toFloat()
+                            val change = it.toFloat()
                             shares.value =
                                 shares.value.map {
                                     if (share.person == it.person) share.copy(
-                                        percentage = it.percentage
+                                        percentage = change
                                     ) else it
                                 }
                         })
