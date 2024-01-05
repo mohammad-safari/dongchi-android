@@ -10,6 +10,8 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Button
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Tab
+import androidx.compose.material3.TabRow
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -34,6 +36,7 @@ import ce.bhesab.dongchi.model.group.Group
 import ce.bhesab.dongchi.model.group.GroupScreenState
 import ce.bhesab.dongchi.model.group.Transaction
 import ce.bhesab.dongchi.theme.DongchiTheme
+import com.google.android.material.tabs.TabLayout
 
 @Composable
 fun GroupScreen(group: Group, navController: NavController?, modifier: Modifier = Modifier) {
@@ -54,29 +57,41 @@ fun GroupScreen(group: Group, navController: NavController?, modifier: Modifier 
             .background(MaterialTheme.colorScheme.background)
     ) {
 
+
+
         Column(
             modifier = Modifier
                 .padding(15.dp)
                 .fillMaxWidth()
         ) {
+            TabRow(selectedTabIndex = if(state == GroupScreenState.BALANCE) 0 else 1) {
+            Tab(
+                selected = state == GroupScreenState.BALANCE,
+                onClick = { state = GroupScreenState.BALANCE },
+                text = {
+                    Text(text = stringResource(id = R.string.balances))
+                },
+            )
+            Tab(selected = state == GroupScreenState.EVENT,
+                onClick = { state = GroupScreenState.EVENT },
+                text = {
+                    Text(text = stringResource(id = R.string.events))
+                },
+            )
+            }
             Row(
                 modifier = Modifier
                     .padding(20.dp)
                     .fillMaxWidth(),
                 horizontalArrangement = Arrangement.SpaceAround
             ) {
-                Button(onClick = { state = GroupScreenState.BALANCE }) {
-                    Text(text = stringResource(id = R.string.balances))
-                }
-                Button(onClick = { state = GroupScreenState.EVENT }) {
-                    Text(text = stringResource(id = R.string.events))
+                if (state == GroupScreenState.EVENT) {
+                    EventList(eventList = group.eventList)
+                } else if (state == GroupScreenState.BALANCE) {
+                    BalanceList(balanceList = group.balanceList)
                 }
             }
-            if (state == GroupScreenState.EVENT) {
-                EventList(eventList = group.eventList)
-            } else if (state == GroupScreenState.BALANCE) {
-                BalanceList(balanceList = group.balanceList)
-            }
+
         }
 
         PlusButtonInsert(
