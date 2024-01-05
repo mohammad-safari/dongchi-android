@@ -12,26 +12,28 @@ import co.yml.charts.common.extensions.isNotNull
 import kotlinx.coroutines.launch
 
 
-class ShowGroupViewModel (context : Context
+class ShowGroupViewModel(
+    context: Context
 ) : ViewModel() {
 
-    private val groupApi =  RetrofitClient.groupApi
-    private val userSettingsRepository =  UserSettingsRepository(context)
+    private val groupApi = RetrofitClient.groupApi
+    private val userSettingsRepository = UserSettingsRepository(context)
 
 
     private val _groupData = mutableStateOf<GroupResponse?>(null)
-    val groupData: State<GroupResponse?> = _groupData
+    val groupData = _groupData
 
-    suspend fun getGroups(){
+    suspend fun getGroups() {
         viewModelScope.launch {
             try {
-                val token = userSettingsRepository.getToken()
-                if (!token.isNotNull()) {
-                    val response = groupApi.getGroup("Bearer $token")
+                val token = userSettingsRepository.getToken().getOrNull()
+
+                if (token != null) {
+                    val response = groupApi.getGroup("$token")
                     if (response.isSuccessful) {
                         _groupData.value = response.body()
                     } else {
-                        // Handle error
+                        // error
                     }
                 } else {
                     // Handle missing token

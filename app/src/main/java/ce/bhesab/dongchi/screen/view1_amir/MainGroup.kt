@@ -1,5 +1,8 @@
 package ce.bhesab.dongchi.screen.view1_amir
 
+import android.content.Context
+import android.graphics.BitmapFactory
+import android.util.Base64
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -15,7 +18,7 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Code
+import androidx.compose.material.icons.filled.Group
 import androidx.compose.material3.Button
 import androidx.compose.material3.Card
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -35,21 +38,21 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.asImageBitmap
 import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import ce.bhesab.dongchi.R
+import ce.bhesab.dongchi.api.user.model.Group
 import ce.bhesab.dongchi.component.BottomNavigationBar
 import ce.bhesab.dongchi.component.PlusButtonInsert
-import ce.bhesab.dongchi.model.viewGroup.Group
-import ce.bhesab.dongchi.theme.DongchiTheme
+import ce.bhesab.dongchi.viewmodel.ShowGroupViewModel
 
 @Composable
-fun ViewGroups(navController: NavController?) {
-    GroupList(groups = DataSource().loadGroups(), navController = navController)
+fun ViewGroups(navController: NavController?,context: Context) {
+    val showGroupViewModel = remember { ShowGroupViewModel(context) }
+    showGroupViewModel.groupData.value?.let { GroupList(groups = it.groups, navController = navController) }
 }
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -91,7 +94,6 @@ fun GroupList(groups: List<Group>, modifier: Modifier = Modifier, navController:
             navController
         ) {
             isSheetOpen = true
-            //onClick code
         }
 
         BottomNavigationBar(
@@ -122,9 +124,9 @@ fun GroupList(groups: List<Group>, modifier: Modifier = Modifier, navController:
                             modifier = Modifier
                                 .fillMaxWidth()
                                 .padding(vertical = 8.dp),
-                            label = { Text(stringResource(R.string.code)) },
+                            label = { Text(stringResource(R.string.groupName)) },
                             leadingIcon = {
-                                Icon(Icons.Default.Code, contentDescription = null)
+                                Icon(Icons.Default.Group, contentDescription = null)
                             }
                         )
                     }
@@ -149,6 +151,9 @@ fun GroupList(groups: List<Group>, modifier: Modifier = Modifier, navController:
 
 @Composable
 fun GroupLine(group: Group, modifier: Modifier = Modifier) {
+    val decodedBytes = Base64.decode(group.groupImage, Base64.DEFAULT)
+    val photo = BitmapFactory.decodeByteArray(decodedBytes, 0, decodedBytes.size)
+
     Card(modifier = modifier.background(Color.White)) {
         Row(
             modifier = Modifier
@@ -157,8 +162,8 @@ fun GroupLine(group: Group, modifier: Modifier = Modifier) {
                 .clip(MaterialTheme.shapes.medium)
         ) {
             Image(
-                painter = painterResource(group.imageGroupId),
-                contentDescription = group.stringGroupDataId,
+                bitmap = photo.asImageBitmap(),
+                contentDescription = group.description,
                 modifier = Modifier
                     .size(width = 100.dp, height = 100.dp)
                     .clip(MaterialTheme.shapes.medium),
@@ -166,14 +171,14 @@ fun GroupLine(group: Group, modifier: Modifier = Modifier) {
             )
             Column {
                 Text(
-                    text = group.name,
+                    text = group.groupName,
                     modifier = Modifier.align(Alignment.CenterHorizontally),
                     style = MaterialTheme.typography.headlineMedium,
                     color = MaterialTheme.colorScheme.onSecondary
                 )
 
                 Text(
-                    text = group.stringGroupDataId,
+                    text = group.description,
                     modifier = Modifier
                         .padding(16.dp)
                         .align(Alignment.End),
@@ -185,12 +190,12 @@ fun GroupLine(group: Group, modifier: Modifier = Modifier) {
     }
 }
 
-@Preview(showBackground = true, showSystemUi = true, locale = "fa")
-@Composable
-fun PreviewGroup() {
-    DongchiTheme {
-        ViewGroups(null)
-    }
-}
+//@Preview(showBackground = true, showSystemUi = true, locale = "fa")
+//@Composable
+//fun PreviewGroup() {
+//    DongchiTheme {
+//        ViewGroups(null)
+//    }
+//}
 
 

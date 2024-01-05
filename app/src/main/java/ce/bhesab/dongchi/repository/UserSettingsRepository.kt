@@ -15,12 +15,13 @@ class UserSettingsRepository(private val context: Context) {
         private val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = "settings")
     }
 
-    suspend fun getToken() {
-        Result.runCatching {
+    suspend fun getToken(): Result<String?> {
+        return Result.runCatching {
             context.dataStore.data.map { preferences ->
                 preferences[userPreferenceKey] ?: ""
             }.firstOrNull()
         }
+
     }
 
     suspend fun saveToken(token: String) {

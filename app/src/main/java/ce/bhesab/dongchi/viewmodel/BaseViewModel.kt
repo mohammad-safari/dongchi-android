@@ -22,7 +22,7 @@ class BaseViewModel(context: Context) : ViewModel() {
 
     fun checkLogin() {
         viewModelScope.launch {
-            _isLogin.value = true
+            _isLogin.value = settingsRepository.getToken().getOrNull() != null
         }
     }
 

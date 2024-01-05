@@ -76,7 +76,7 @@ class MainActivity() : AppCompatActivity() {
                 LoginScreen(navController = navController, context = this@MainActivity)
             }
             composable("groups") {
-                ViewGroups(navController = navController)
+                ViewGroups(navController = navController, context = this@MainActivity)
             }
             composable("group") {
                 GroupScreen(navController = navController)
