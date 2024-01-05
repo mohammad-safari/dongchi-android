@@ -69,7 +69,7 @@ fun Intro(navController: NavController?) {
                 }
             }
         }
-        Button(onClick = { navController?.navigate("signup") }) {
+        Button(onClick = { navController?.navigate("login") }) {
             Text(text = stringResource(R.string.skip))
         }
     }

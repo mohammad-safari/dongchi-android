@@ -1,6 +1,7 @@
 package ce.bhesab.dongchi.viewmodel
 
 import android.content.Context
+import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -22,19 +23,24 @@ class LoginViewModel(
     fun loginUser(email: String, password: String) {
         viewModelScope.launch {
             try {
-                val response = userApi.login(LoginRequest( "", email, "", password))
+                val response = userApi.login(LoginRequest( email, null, null, password))
 
 
                 if (response.isSuccessful) {
-                    val token = response.body()?.token ?: ""
+                    val token = response.body()?.Authorization ?: ""
                     userSettingsRepository.saveToken(token)
                     _loginSuccess.value = true
                 } else {
                     // Handle login failure
                 }
             } catch (e: Exception) {
+//                _loginSuccess.value = true
                 // Handle network or other exceptions
             }
         }
+    }
+
+    fun setIsLogin(login: MutableState<Boolean>) {
+        _loginSuccess = login
     }
 }

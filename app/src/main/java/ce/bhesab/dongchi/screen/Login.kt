@@ -20,6 +20,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -43,7 +44,18 @@ fun LoginScreen(navController: NavController?, context: Context) {
     var email by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
     val isPasswordVisible by remember { mutableStateOf(false) }
+    val isLogin = remember {
+        mutableStateOf(false)
+    }
+
     val loginViewModel = LoginViewModel(context)
+    loginViewModel.setIsLogin(isLogin)
+
+    LaunchedEffect(isLogin.value){
+        if (isLogin.value) {
+            navController?.navigate("dashboard")
+        }
+    }
 
     Column(
         modifier = Modifier
@@ -102,9 +114,8 @@ fun LoginScreen(navController: NavController?, context: Context) {
             Text(stringResource(R.string.logIn))
         }
 
-        if (loginViewModel.loginSuccess.value) {
-            navController?.navigate("dashboard")
-        }
+
+
 
         Spacer(modifier = Modifier.height(16.dp))
 

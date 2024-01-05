@@ -31,9 +31,12 @@ import ce.bhesab.dongchi.screen.SignUpScreen
 import ce.bhesab.dongchi.screen.view1_amir.ViewGroups
 import ce.bhesab.dongchi.theme.DongchiTheme
 import ce.bhesab.dongchi.viewmodel.BaseViewModel
+import ce.bhesab.dongchi.viewmodel.LoginViewModel
 
 class MainActivity() : AppCompatActivity() {
     private val baseViewModel = BaseViewModel(this)
+
+    private val loginViewModel = LoginViewModel(this)
 
     init {
         baseViewModel.checkLogin()
@@ -55,7 +58,7 @@ class MainActivity() : AppCompatActivity() {
 
     @Composable
     fun AppContent() {
-        val startDestination = if (baseViewModel.isLogin.value) "dashboard" else "intro"
+        val startDestination = if (loginViewModel.loginSuccess.value) "dashboard" else "intro"
         val navController = rememberNavController()
 
         NavHost(navController = navController, startDestination = startDestination) {
