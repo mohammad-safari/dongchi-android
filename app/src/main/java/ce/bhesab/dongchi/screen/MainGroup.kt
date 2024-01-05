@@ -1,4 +1,4 @@
-package ce.bhesab.dongchi.screen.view1_amir
+package ce.bhesab.dongchi.screen
 
 import android.content.Context
 import android.graphics.BitmapFactory
