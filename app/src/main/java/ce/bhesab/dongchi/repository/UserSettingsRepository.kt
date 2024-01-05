@@ -8,6 +8,7 @@ import androidx.datastore.preferences.core.stringPreferencesKey
 import androidx.datastore.preferences.preferencesDataStore
 import kotlinx.coroutines.flow.firstOrNull
 import kotlinx.coroutines.flow.map
+import kotlin.Result
 
 class UserSettingsRepository(private val context: Context) {
     private companion object {
@@ -16,7 +17,7 @@ class UserSettingsRepository(private val context: Context) {
     }
 
     suspend fun getToken(): Result<String?> {
-        return Result.runCatching {
+        return runCatching {
             context.dataStore.data.map { preferences ->
                 preferences[userPreferenceKey] ?: ""
             }.firstOrNull()
@@ -25,7 +26,7 @@ class UserSettingsRepository(private val context: Context) {
     }
 
     suspend fun saveToken(token: String) {
-        Result.runCatching {
+        runCatching {
             context.dataStore.edit { preferences ->
                 preferences[userPreferenceKey] = token
             }

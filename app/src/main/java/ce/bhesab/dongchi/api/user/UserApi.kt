@@ -13,11 +13,11 @@ import retrofit2.http.POST
 
 
 public interface UserApi {
-    @POST("/authentication/register")
+    @POST("/user/registeration")
     @Headers("Content-Type: application/json")
     suspend fun signup(@Body signupRequest: SignupRequest): Response<SignupResponse>
 
-    @POST("/authentication/login")
+    @POST("/user/authentication")
     @Headers("Content-Type: application/json")
     suspend fun login(@Body loginRequest: LoginRequest): Response<LoginResponse>
 
