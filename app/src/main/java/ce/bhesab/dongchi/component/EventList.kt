@@ -20,7 +20,7 @@ fun EventList(eventList: List<Event>){
 @Preview(showBackground = true)
 @Composable
 fun EventListPreview(){
-    val eventList = listOf<Event>(Transaction(3, 22.2, "Sarvenaz", "Mohammad"),
-                                  Expense(4, 30.0, "Amirhossein", "Cake"))
+    val eventList = listOf<Event>(Transaction(22.2, "Sarvenaz", "Mohammad"),
+                                  Expense(30.0, "Amirhossein", "Cake"))
     EventList(eventList = eventList)
 }

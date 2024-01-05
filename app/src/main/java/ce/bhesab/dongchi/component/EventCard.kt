@@ -36,5 +36,5 @@ fun EventCard(event: Event){
 @Preview(showBackground = true)
 @Composable
 fun EventPreview() {
-    ce.bhesab.dongchi.component.EventCard(event = Transaction(1, 22.1, "Mohammad", "Amirhossein"))
+    ce.bhesab.dongchi.component.EventCard(event = Transaction(22.1, "Mohammad", "Amirhossein"))
 }

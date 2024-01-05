@@ -7,6 +7,8 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
@@ -73,16 +75,7 @@ class MainActivity() : AppCompatActivity() {
                 ViewGroups(navController = navController)
             }
             composable("group") {
-                val eventList = listOf<Event>(
-                    Transaction(3, 22.2, "Sarvenaz", "Mohammad"),
-                    Expense(4, 30.0, "Amirhossein", "Cake")
-                )
-                val balanceList = listOf<Balance>(
-                    Balance("Sarvenaz", mapOf("Amirhossein" to 30.0)),
-                    Balance("Mohammad", mapOf("Amirhossein" to 20.0))
-                )
-                val group = Group(eventList, balanceList)
-                GroupScreen(group, navController = navController)
+                GroupScreen(navController = navController)
             }
             composable("share") {
                 val share = SharesScreen()

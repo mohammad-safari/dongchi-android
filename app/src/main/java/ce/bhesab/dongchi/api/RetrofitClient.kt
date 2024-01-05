@@ -1,5 +1,6 @@
 package ce.bhesab.dongchi.api
 
+import ce.bhesab.dongchi.api.group.GroupApi
 import ce.bhesab.dongchi.api.user.UserApi
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
@@ -19,4 +20,5 @@ object RetrofitClient {
         .build()
 
     val userApi: UserApi = retrofit.create(UserApi::class.java)
+    val groupApi: GroupApi = retrofit.create(GroupApi::class.java)
 }
