@@ -7,6 +7,8 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavType
@@ -25,7 +27,7 @@ import ce.bhesab.dongchi.theme.DongchiTheme
 import ce.bhesab.dongchi.viewmodel.BaseViewModel
 import ce.bhesab.dongchi.viewmodel.LoginViewModel
 
-class MainActivity() : AppCompatActivity() {
+class MainActivity : AppCompatActivity() {
     private val baseViewModel = BaseViewModel(this)
 
     private val loginViewModel = LoginViewModel(this)
@@ -52,6 +54,7 @@ class MainActivity() : AppCompatActivity() {
     fun AppContent() {
         val startDestination = if (loginViewModel.loginSuccess.value) "dashboard" else "intro"
         val navController = rememberNavController()
+        val currentGroup = remember { mutableStateOf("") }
 
         NavHost(navController = navController, startDestination = startDestination) {
             composable("intro") {
@@ -71,10 +74,10 @@ class MainActivity() : AppCompatActivity() {
                 LoginScreen(navController = navController, context = this@MainActivity)
             }
             composable("groups") {
-                ViewGroups(navController = navController, context = this@MainActivity)
+                ViewGroups(navController = navController, context = this@MainActivity, currentGroup)
             }
             composable("group") {
-                GroupScreen(navController = navController)
+                GroupScreen(navController = navController, context = this@MainActivity,currentGroup = currentGroup)
             }
             composable(
                 "share/{groupId}",

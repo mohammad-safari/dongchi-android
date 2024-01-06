@@ -1,5 +1,6 @@
 package ce.bhesab.dongchi.viewmodel
 
+import android.content.Context
 import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
@@ -11,13 +12,15 @@ import ce.bhesab.dongchi.model.group.Event
 import ce.bhesab.dongchi.model.group.Expense
 import ce.bhesab.dongchi.model.group.Transaction
 import ce.bhesab.dongchi.repository.GroupRepository
+import ce.bhesab.dongchi.repository.UserSettingsRepository
 import kotlinx.coroutines.launch
 
-class GroupViewModel : ViewModel() {
+class GroupViewModel(private val context: Context) : ViewModel() {
     private var _error = mutableStateOf(false)
     val fetchErrorState: State<Boolean> = _error
 
     private val groupRepository = GroupRepository()
+    private val userSettingsRepository = UserSettingsRepository(context)
 
     private val _balanceList = mutableStateOf<List<Balance>>(emptyList())
     val balances: State<List<Balance>> = _balanceList
@@ -25,11 +28,12 @@ class GroupViewModel : ViewModel() {
     private val _eventList = mutableStateOf<List<Event>>(emptyList())
     val events: State<List<Event>> = _eventList
 
-    fun fetchBalances(groupId: String, authorizationHeader: String) {
+    fun fetchBalances(groupId: String) {
         _error.value = false
 
         viewModelScope.launch {
-            val response = groupRepository.fetchBalances(groupId, authorizationHeader)
+            val authorizationHeader = userSettingsRepository.getToken().getOrNull()
+            val response = authorizationHeader?.let { groupRepository.fetchBalances(groupId, it) }
             if(response == null){
                 _error.value = true
                 _balanceList.value = listOf<Balance>(
@@ -43,11 +47,12 @@ class GroupViewModel : ViewModel() {
         }
     }
 
-    fun fetchEvents(groupId: String, authorizationHeader: String) {
+    fun fetchEvents(groupId: String) {
         _error.value = false
 
         viewModelScope.launch {
-            val response = groupRepository.fetchEvents(groupId, authorizationHeader)
+            val authorizationHeader = userSettingsRepository.getToken().getOrNull()
+            val response = authorizationHeader?.let { groupRepository.fetchEvents(groupId, it) }
             if(response == null){
                 _error.value = true
                 _eventList.value = listOf<Event>(

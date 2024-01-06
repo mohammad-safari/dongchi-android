@@ -5,6 +5,7 @@ import android.graphics.BitmapFactory
 import android.util.Base64
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -30,6 +31,7 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.rememberModalBottomSheetState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -52,7 +54,7 @@ import ce.bhesab.dongchi.component.PlusButtonInsert
 import ce.bhesab.dongchi.viewmodel.ShowGroupViewModel
 
 @Composable
-fun ViewGroups(navController: NavController?, context: Context) {
+fun ViewGroups(navController: NavController?, context: Context, currentGroup: MutableState<String>) {
     val showGroupViewModel = remember { ShowGroupViewModel(context) }
     showGroupViewModel.getGroups()
     val showGroupList = remember { mutableStateOf(false) }
@@ -63,7 +65,8 @@ fun ViewGroups(navController: NavController?, context: Context) {
         showGroupViewModel.groupData.value?.let {
             GroupList(
                 groups = it,
-                navController = navController
+                navController = navController,
+                currentGroup = currentGroup
             )
         }
     }
@@ -71,7 +74,7 @@ fun ViewGroups(navController: NavController?, context: Context) {
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun GroupList(groups: List<Group>, modifier: Modifier = Modifier, navController: NavController?) {
+fun GroupList(groups: List<Group>, modifier: Modifier = Modifier, navController: NavController?, currentGroup:MutableState<String>) {
     Box(
         modifier = modifier
             .fillMaxSize()
@@ -96,6 +99,8 @@ fun GroupList(groups: List<Group>, modifier: Modifier = Modifier, navController:
             items(groups) { group ->
                 GroupLine(
                     group = group,
+                    navController,
+                    currentGroup,
                     modifier = modifier.padding(8.dp)
                 )
             }
@@ -163,13 +168,23 @@ fun GroupList(groups: List<Group>, modifier: Modifier = Modifier, navController:
 }
 
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun GroupLine(group: Group, modifier: Modifier = Modifier) {
+fun GroupLine(
+    group: Group,
+    navController: NavController?,
+    currentGroup: MutableState<String>,
+    modifier: Modifier = Modifier
+) {
     val decodedBytes =
         if (group.groupImage != null) Base64.decode(group.groupImage, Base64.DEFAULT) else null
     val photo = decodedBytes?.let { BitmapFactory.decodeByteArray(decodedBytes, 0, it.size) }
 
-    Card(modifier = modifier.background(Color.White)) {
+    Card(modifier = modifier
+        .background(Color.White)
+        .clickable {}, onClick = {
+        currentGroup.value = group.id.toString()
+        navController?.navigate("group") }) {
         Row(
             modifier = Modifier
                 .background(MaterialTheme.colorScheme.secondary)
@@ -185,8 +200,7 @@ fun GroupLine(group: Group, modifier: Modifier = Modifier) {
                         .clip(MaterialTheme.shapes.medium),
                     contentScale = ContentScale.Crop
                 )
-            }
-            else{
+            } else {
                 Image(
                     painter = painterResource(R.drawable.logo),
                     contentDescription = group.description,

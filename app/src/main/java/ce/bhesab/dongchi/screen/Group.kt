@@ -24,6 +24,7 @@ import androidx.compose.material3.TabRow
 import androidx.compose.material3.Text
 import androidx.compose.material3.rememberModalBottomSheetState
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -38,33 +39,34 @@ import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
+import ce.bhesab.dongchi.MainActivity
 import ce.bhesab.dongchi.R
 import ce.bhesab.dongchi.component.BalanceList
 import ce.bhesab.dongchi.component.BottomNavigationBar
 import ce.bhesab.dongchi.component.EventList
 import ce.bhesab.dongchi.component.PlusButtonInsert
-import ce.bhesab.dongchi.model.group.Balance
-import ce.bhesab.dongchi.model.group.Event
-import ce.bhesab.dongchi.model.group.Expense
-import ce.bhesab.dongchi.model.group.Group
 import ce.bhesab.dongchi.model.group.GroupScreenState
-import ce.bhesab.dongchi.model.group.Transaction
 import ce.bhesab.dongchi.theme.DongchiTheme
+import ce.bhesab.dongchi.viewmodel.BaseViewModel
 import ce.bhesab.dongchi.viewmodel.GroupViewModel
-import com.google.android.material.tabs.TabLayout
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun GroupScreen(navController: NavController?, modifier: Modifier = Modifier) {
+fun GroupScreen(
+    navController: NavController?,
+    modifier: Modifier = Modifier,
+    currentGroup: MutableState<String>,
+    context: MainActivity
+) {
     var state by remember {
         mutableStateOf(GroupScreenState.EVENT)
     }
 
-    val groupViewModel = GroupViewModel()
-    if (state == GroupScreenState.BALANCE){
-        groupViewModel.fetchBalances("8", "tokentoken")
+    val groupViewModel = GroupViewModel(context)
+    if (state == GroupScreenState.BALANCE) {
+        groupViewModel.fetchBalances(currentGroup.value)
     } else {
-        groupViewModel.fetchEvents("8", "tokentoken")
+        groupViewModel.fetchEvents(currentGroup.value)
     }
 
 //    Scaffold(
@@ -91,32 +93,32 @@ fun GroupScreen(navController: NavController?, modifier: Modifier = Modifier) {
     ) {
 
 
-
         Column(
             modifier = Modifier
                 .padding(15.dp)
                 .fillMaxWidth()
         ) {
-            TabRow(selectedTabIndex = if(state == GroupScreenState.BALANCE) 0 else 1) {
-            Tab(
-                selected = state == GroupScreenState.BALANCE,
-                onClick = {
-                    state = GroupScreenState.BALANCE
-                    groupViewModel.fetchBalances("8", "tokentoken")
-                          },
-                text = {
-                    Text(text = stringResource(id = R.string.balances))
-                },
-            )
-            Tab(selected = state == GroupScreenState.EVENT,
-                onClick = {
-                    state = GroupScreenState.EVENT
-                    groupViewModel.fetchEvents("8", "tokentoken")
-                          },
-                text = {
-                    Text(text = stringResource(id = R.string.events))
-                },
-            )
+            TabRow(selectedTabIndex = if (state == GroupScreenState.BALANCE) 0 else 1) {
+                Tab(
+                    selected = state == GroupScreenState.BALANCE,
+                    onClick = {
+                        state = GroupScreenState.BALANCE
+                        groupViewModel.fetchBalances(currentGroup.value)
+                    },
+                    text = {
+                        Text(text = stringResource(id = R.string.balances))
+                    },
+                )
+                Tab(
+                    selected = state == GroupScreenState.EVENT,
+                    onClick = {
+                        state = GroupScreenState.EVENT
+                        groupViewModel.fetchEvents(currentGroup.value)
+                    },
+                    text = {
+                        Text(text = stringResource(id = R.string.events))
+                    },
+                )
             }
             Row(
                 modifier = Modifier
@@ -124,7 +126,7 @@ fun GroupScreen(navController: NavController?, modifier: Modifier = Modifier) {
                     .fillMaxWidth(),
                 horizontalArrangement = Arrangement.SpaceAround
             ) {
-                if(groupViewModel.fetchErrorState.value){
+                if (groupViewModel.fetchErrorState.value) {
                     ClickableText(
                         text = AnnotatedString("retry"),
                         style = TextStyle.Default.copy(
@@ -132,14 +134,14 @@ fun GroupScreen(navController: NavController?, modifier: Modifier = Modifier) {
                             color = MaterialTheme.colorScheme.secondary
                         ),
                         onClick = {
-                            if (state == GroupScreenState.BALANCE){
-                                groupViewModel.fetchBalances("8", "tokentoken")
+                            if (state == GroupScreenState.BALANCE) {
+                                groupViewModel.fetchBalances("8")
                             } else {
-                                groupViewModel.fetchEvents("8", "tokentoken")
+                                groupViewModel.fetchEvents("8")
                             }
                         }
                     )
-                } else{
+                } else {
                     if (state == GroupScreenState.EVENT) {
                         EventList(eventList = groupViewModel.events.value)
                     } else if (state == GroupScreenState.BALANCE) {
@@ -212,10 +214,14 @@ fun GroupScreen(navController: NavController?, modifier: Modifier = Modifier) {
 
 }
 
-@Preview(showBackground = true, showSystemUi = true, locale = "fa")
-@Composable
-fun GroupScreenPreview() {
-    DongchiTheme {
-        GroupScreen(null)
-    }
-}
+//@Preview(showBackground = true, showSystemUi = true, locale = "fa")
+//@Composable
+//fun GroupScreenPreview() {
+//    DongchiTheme {
+//        GroupScreen(
+//            null,
+//            currentGroup = remember { mutableStateOf("") },
+//            context = null
+//        )
+//    }
+//}
