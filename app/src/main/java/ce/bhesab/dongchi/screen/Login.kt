@@ -14,6 +14,7 @@ import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Create
 import androidx.compose.material.icons.filled.MailOutline
+import androidx.compose.material.icons.filled.Person
 import androidx.compose.material3.Button
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
@@ -79,9 +80,9 @@ fun LoginScreen(navController: NavController?, context: Context) {
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(vertical = 8.dp),
-            label = { Text(stringResource(R.string.email)) },
+            label = { Text(stringResource(R.string.name)) },
             leadingIcon = {
-                Icon(Icons.Default.MailOutline, contentDescription = null)
+                Icon(Icons.Default.Person, contentDescription = null)
             }
         )
 
