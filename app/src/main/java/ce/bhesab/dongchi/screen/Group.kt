@@ -14,6 +14,7 @@ import androidx.compose.material3.Tab
 import androidx.compose.material3.TabRow
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -25,7 +26,6 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.style.TextDecoration
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import ce.bhesab.dongchi.MainActivity
@@ -35,8 +35,6 @@ import ce.bhesab.dongchi.component.BottomNavigationBar
 import ce.bhesab.dongchi.component.EventList
 import ce.bhesab.dongchi.component.PlusButtonInsert
 import ce.bhesab.dongchi.model.group.GroupScreenState
-import ce.bhesab.dongchi.theme.DongchiTheme
-import ce.bhesab.dongchi.viewmodel.BaseViewModel
 import ce.bhesab.dongchi.viewmodel.GroupViewModel
 
 @Composable
@@ -50,11 +48,14 @@ fun GroupScreen(
         mutableStateOf(GroupScreenState.EVENT)
     }
 
-    val groupViewModel = GroupViewModel(context)
-    if (state == GroupScreenState.BALANCE) {
-        groupViewModel.fetchBalances(currentGroup.value)
-    } else {
-        groupViewModel.fetchEvents(currentGroup.value)
+    val groupViewModel = remember { GroupViewModel(context) }
+
+    LaunchedEffect(state, groupViewModel.events, groupViewModel.balances) {
+        if (state == GroupScreenState.BALANCE) {
+            groupViewModel.fetchBalances(currentGroup.value)
+        } else {
+            groupViewModel.fetchEvents(currentGroup.value)
+        }
     }
 
     Box(
@@ -106,9 +107,9 @@ fun GroupScreen(
                         ),
                         onClick = {
                             if (state == GroupScreenState.BALANCE) {
-                                groupViewModel.fetchBalances("8")
+                                groupViewModel.fetchBalances(currentGroup.value)
                             } else {
-                                groupViewModel.fetchEvents("8")
+                                groupViewModel.fetchEvents(currentGroup.value)
                             }
                         }
                     )
