@@ -19,6 +19,7 @@ import androidx.navigation.navArgument
 import ce.bhesab.dongchi.screen.DashboardScreen
 import ce.bhesab.dongchi.screen.GroupScreen
 import ce.bhesab.dongchi.screen.Intro
+import ce.bhesab.dongchi.screen.JoinGroup
 import ce.bhesab.dongchi.screen.LoginScreen
 import ce.bhesab.dongchi.screen.SharesScreen
 import ce.bhesab.dongchi.screen.SignUpScreen
@@ -69,6 +70,9 @@ class MainActivity : AppCompatActivity() {
             }
             composable("signup") {
                 SignUpScreen(navController = navController, context = this@MainActivity)
+            }
+            composable("join") {
+                JoinGroup(navController = navController)
             }
             composable("login") {
                 LoginScreen(navController = navController, context = this@MainActivity)

@@ -6,37 +6,24 @@ import android.util.Base64
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Group
-import androidx.compose.material3.Button
 import androidx.compose.material3.Card
 import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.ModalBottomSheet
-import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
-import androidx.compose.material3.rememberModalBottomSheetState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.MutableState
-import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import androidx.compose.runtime.saveable.rememberSaveable
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -44,7 +31,6 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.asImageBitmap
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import ce.bhesab.dongchi.R
@@ -72,7 +58,6 @@ fun ViewGroups(navController: NavController?, context: Context, currentGroup: Mu
     }
 }
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun GroupList(groups: List<Group>, modifier: Modifier = Modifier, navController: NavController?, currentGroup:MutableState<String>) {
     Box(
@@ -81,14 +66,6 @@ fun GroupList(groups: List<Group>, modifier: Modifier = Modifier, navController:
             .background(MaterialTheme.colorScheme.background),
 
         ) {
-
-        var nameGroup by remember {
-            mutableStateOf("")
-        }
-        val sheetState = rememberModalBottomSheetState()
-        var isSheetOpen by rememberSaveable {
-            mutableStateOf(false)
-        }
 
 
         LazyColumn(
@@ -109,61 +86,15 @@ fun GroupList(groups: List<Group>, modifier: Modifier = Modifier, navController:
         PlusButtonInsert(
             modifier = modifier
                 .align(Alignment.BottomEnd)
-                .padding(bottom = 92.dp, end = 10.dp),
+                .padding(bottom = 50.dp, end = 7.dp),
             navController
-        ) {
-            isSheetOpen = true
-        }
+        )
 
         BottomNavigationBar(
             modifier = Modifier
                 .align(Alignment.BottomEnd),
             navController = navController
         )
-
-
-        if (isSheetOpen) {
-            ModalBottomSheet(
-                sheetState = sheetState,
-                onDismissRequest = {
-                    isSheetOpen = false
-                }
-            ) {
-                Column(
-                    modifier = Modifier.fillMaxSize(),
-                ) {
-
-                    Row(
-                        modifier = Modifier.fillMaxWidth(),
-                        horizontalArrangement = Arrangement.Center
-                    ) {
-                        OutlinedTextField(
-                            value = nameGroup,
-                            onValueChange = { nameGroup = it },
-                            modifier = Modifier
-                                .fillMaxWidth()
-                                .padding(vertical = 8.dp),
-                            label = { Text(stringResource(R.string.groupName)) },
-                            leadingIcon = {
-                                Icon(Icons.Default.Group, contentDescription = null)
-                            }
-                        )
-                    }
-
-                    Spacer(modifier = Modifier.height(16.dp))
-
-                    Row(
-                        modifier = Modifier.fillMaxWidth(),
-                        horizontalArrangement = Arrangement.Center
-                    ) {
-                        Button(onClick = { /*TODO*/ }) {
-                            Text(text = stringResource(id = R.string.create))
-                        }
-                    }
-
-                }
-            }
-        }
     }
 }
 
@@ -177,7 +108,7 @@ fun GroupLine(
     modifier: Modifier = Modifier
 ) {
     val decodedBytes =
-        if (group.groupImage != null) Base64.decode(group.groupImage, Base64.DEFAULT) else null
+        Base64.decode(group.groupImage, Base64.DEFAULT)
     val photo = decodedBytes?.let { BitmapFactory.decodeByteArray(decodedBytes, 0, it.size) }
 
     Card(modifier = modifier
@@ -230,13 +161,5 @@ fun GroupLine(
         }
     }
 }
-
-//@Preview(showBackground = true, showSystemUi = true, locale = "fa")
-//@Composable
-//fun PreviewGroup() {
-//    DongchiTheme {
-//        ViewGroups(null)
-//    }
-//}
 
 

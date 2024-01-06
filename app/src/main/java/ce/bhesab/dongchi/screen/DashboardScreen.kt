@@ -81,22 +81,6 @@ class DashboardScreen {
     fun Dashboard(
         modifier: Modifier = Modifier, navController: NavController?, overview: Overview
     ) {
-//        Scaffold(
-//        floatingActionButton = {
-//            FloatingActionButton(onClick = { /* Handle FAB click */ }) {
-//                Icon(Icons.Filled.Add, contentDescription = "Add")
-//            }
-//        }
-//        ) { it ->
-
-        var nameGroup by remember {
-            mutableStateOf("")
-        }
-
-        val sheetState = rememberModalBottomSheetState()
-        var isSheetOpen by rememberSaveable {
-            mutableStateOf(false)
-        }
 
 
         Box {
@@ -125,60 +109,15 @@ class DashboardScreen {
             PlusButtonInsert(
                 modifier = modifier
                     .align(Alignment.BottomEnd)
-                    .padding(bottom = 92.dp, end = 10.dp),
+                    .padding(bottom = 50.dp, end = 7.dp),
                 navController
-            ) {
-                isSheetOpen = true
-            }
+            )
 
             BottomNavigationBar(
                 modifier = Modifier
                     .align(Alignment.BottomEnd),
                 navController = navController
             )
-
-            if (isSheetOpen) {
-                ModalBottomSheet(
-                    sheetState = sheetState,
-                    onDismissRequest = {
-                        isSheetOpen = false
-                    }
-                ) {
-                    Column(
-                        modifier = Modifier.fillMaxSize(),
-                    ) {
-
-                        Row(
-                            modifier = Modifier.fillMaxWidth(),
-                            horizontalArrangement = Arrangement.Center
-                        ) {
-                            OutlinedTextField(
-                                value = nameGroup,
-                                onValueChange = { nameGroup = it },
-                                modifier = Modifier
-                                    .fillMaxWidth()
-                                    .padding(vertical = 8.dp),
-                                label = { Text(stringResource(R.string.groupName)) },
-                                leadingIcon = {
-                                    Icon(Icons.Default.Group, contentDescription = null)
-                                }
-                            )
-                        }
-
-                        Spacer(modifier = Modifier.height(16.dp))
-
-                        Row(
-                            modifier = Modifier.fillMaxWidth(),
-                            horizontalArrangement = Arrangement.Center
-                        ) {
-                            Button(onClick = { /*TODO*/ }) {
-                                Text(text = stringResource(id = R.string.create))
-                            }
-                        }
-
-                    }
-                }
-            }
         }
 
 
