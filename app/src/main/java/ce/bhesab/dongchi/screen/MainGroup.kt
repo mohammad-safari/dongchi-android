@@ -107,8 +107,7 @@ fun GroupLine(
     currentGroup: MutableState<String>,
     modifier: Modifier = Modifier
 ) {
-    val decodedBytes =
-        Base64.decode(group.groupImage, Base64.DEFAULT)
+    val decodedBytes = if (group.groupImage != null) Base64.decode(group.groupImage, Base64.DEFAULT) else null
     val photo = decodedBytes?.let { BitmapFactory.decodeByteArray(decodedBytes, 0, it.size) }
 
     Card(modifier = modifier
